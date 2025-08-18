@@ -17,3 +17,40 @@
     <script src="script.js"></script>
 </body>
 </html>
+
+const namesData = [
+    { firstName: "John", lastName: "Doe", table: 1 },
+    { firstName: "Jane", lastName: "Smith", table: 2 },
+    // Add 300 names here, similar to the example
+];
+
+function searchNames() {
+    const firstNameInput = document.getElementById('firstNameInput').value.toLowerCase();
+    const resultsDiv = document.getElementById('results');
+    
+    // Clear previous results
+    resultsDiv.innerHTML = '';
+
+    // Filter names based on the input
+    const filteredNames = namesData.filter(name =>
+        name.firstName.toLowerCase().includes(firstNameInput)
+    );
+
+    // If no names match
+    if (filteredNames.length === 0) {
+        resultsDiv.innerHTML = '<p>No results found.</p>';
+        return;
+    }
+
+    // Display the filtered results in 3 columns
+    filteredNames.forEach(name => {
+        const resultDiv = document.createElement('div');
+        resultDiv.classList.add('result-item');
+        resultDiv.innerHTML = `
+            <p><strong>First Name:</strong> ${name.firstName}</p>
+            <p><strong>Last Name:</strong> ${name.lastName}</p>
+            <p><strong>Table Number:</strong> ${name.table}</p>
+        `;
+        resultsDiv.appendChild(resultDiv);
+    });
+}
