@@ -10,7 +10,10 @@
     <div class="container">
         <h1>Welcome to My Wedding</h1>
         <p>Enter your first name:</p>
-        <input type="text" id="firstNameInput" placeholder="First Name" oninput="searchNames()">
+        <input type="text" id="firstNameInput" placeholder="First Name">
+        <button id="enterButton" onclick="searchNames()">Enter</button>
+        
+        <!-- Results will be displayed here -->
         <div id="results" class="results"></div>
     </div>
 
@@ -23,21 +26,20 @@ body {
     background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    text-align: center;
 }
 
 .container {
     max-width: 800px;
     margin: 50px auto;
-    text-align: center;
+    padding: 20px;
     background-color: white;
-    padding: 30px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-input {
+input, button {
     padding: 10px;
     font-size: 16px;
-    width: 70%;
     margin-top: 10px;
 }
 
@@ -66,17 +68,20 @@ h1 {
 const namesData = [
     { firstName: "John", lastName: "Doe", table: 1 },
     { firstName: "Jane", lastName: "Smith", table: 2 },
-    // Add 300 names here, similar to the example
+    { firstName: "John", lastName: "Adams", table: 3 },
+    { firstName: "Jake", lastName: "Johnson", table: 4 },
+    { firstName: "John", lastName: "Brown", table: 5 },
+    // Add more names as needed (300+)
 ];
 
 function searchNames() {
     const firstNameInput = document.getElementById('firstNameInput').value.toLowerCase();
     const resultsDiv = document.getElementById('results');
-    
+
     // Clear previous results
     resultsDiv.innerHTML = '';
 
-    // Filter names based on the input
+    // Filter names based on the entered first name
     const filteredNames = namesData.filter(name =>
         name.firstName.toLowerCase().includes(firstNameInput)
     );
