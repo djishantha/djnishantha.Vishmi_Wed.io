@@ -1,62 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>My Simple Website</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>My Wedding</title>
+  <style>
+    body {
+      background-color: #ffe4e1; /* rose color */
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 30px;
+      text-transform: uppercase;
+      color: blue;
+      margin-top: 50px;
+    }
+
+    img {
+      margin-top: 30px;
+      width: 150px;
+      height: auto;
+    }
+
+    .button-container {
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Welcome to My Simple Website</h1>
-  </header>
-  <main>
-    <p>This is a basic website hosted on GitHub Pages. Feel free to explore!</p>
-    <button id="clickMe">Click Me!</button>
-    <p id="message"></p>
-  </main>
-  <footer>
-    <p>&copy; 2025 My Simple Website</p>
-  </footer>
-  <script src="script.js"></script>
+  <h1>My Wedding</h1>
+
+  <img src="images/rose.jpg" alt="Rose Flower" />
+
+  <div class="button-container">
+    <button onclick="window.location.href='bride.html'">Bride Guest</button>
+    <button onclick="alert('Groom page not yet implemented')">Groom Guest</button>
+  </div>
 </body>
 </html>
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  margin: 0;
-  padding: 0;
-  background-color: #f4f4f9;
-  color: #333;
-}
-
-header {
-  background-color: #6200ea;
-  color: white;
-  padding: 1rem 0;
-}
-
-main {
-  padding: 2rem;
-}
-
-button {
-  background-color: #6200ea;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  border-radius: 5px;
-}
-
-button:hover {
-  background-color: #3700b3;
-}
-
-footer {
-  margin-top: 2rem;
-  font-size: 0.9rem;
-}
-document.getElementById("clickMe").addEventListener("click", function() {
-  document.getElementById("message").textContent = "You clicked the button! 🎉";
-});
