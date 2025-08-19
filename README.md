@@ -37,18 +37,18 @@
 <body>
   <h1>My Wedding</h1>
 
- <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rose_red_1.jpg/320px-Rose_red_1.jpg" alt="Rose Flower" />
+  <img src="images/rose.jpg" alt="Rose Flower" />
 
   <div class="button-container">
-    <button onclick="window.location.href='guest.html'">Bride Guest</button>
-    <button onclick="window.location.href='guest.html'">Groom Guest</button>
+    <button onclick="window.location.href='bride.html'">Bride Guest</button>
+    <button onclick="alert('Groom page not yet implemented')">Groom Guest</button>
   </div>
 </body>
 </html>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Wedding Guest</title>
+  <title>Bride Guest</title>
   <style>
     body {
       background-color: #ffe4e1;
@@ -99,8 +99,21 @@
   <div class="form-container">
     <label for="fname">Enter your first name</label>
     <input type="text" id="fname" name="fname" />
-    <button onclick="alert('Welcome ' + document.getElementById('fname').value + '!')">GO</button>
+    <button onclick="goToExcel()">GO</button>
   </div>
+
+  <script>
+    function goToExcel() {
+      // Optional: check name
+      const name = document.getElementById('fname').value.trim();
+      if(name === "") {
+        alert("Please enter your name.");
+        return;
+      }
+
+      // Redirect to Excel file
+      window.location.href = 'files/table.xlsx';
+    }
+  </script>
 </body>
 </html>
-
