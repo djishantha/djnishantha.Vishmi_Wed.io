@@ -1,106 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Wedding</title>
-    <link rel="stylesheet" href="styles.css">
+  <title>My Wedding</title>
+  <style>
+    body {
+      background-color: #ffe4e1; /* rose color */
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 30px;
+      text-transform: uppercase;
+      color: blue;
+      margin-top: 50px;
+    }
+
+    img {
+      margin-top: 30px;
+      width: 150px;
+      height: auto;
+    }
+
+    .button-container {
+      margin-top: 50px;
+    }
+
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to My Wedding</h1>
-        <p>Enter your first name:</p>
-        <input type="text" id="firstNameInput" placeholder="First Name">
-        <button id="enterButton" onclick="searchNames()">Enter</button>
-        
-        <!-- Results will be displayed here -->
-        <div id="results" class="results"></div>
-    </div>
+  <h1>My Wedding</h1>
 
-    <script src="script.js"></script>
+  <img src="images/rose.jpg" alt="Rose Flower" />
+
+  <div class="button-container">
+    <button onclick="window.location.href='guest.html'">Bride Guest</button>
+    <button onclick="window.location.href='guest.html'">Groom Guest</button>
+  </div>
+</body>
+</html>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Wedding Guest</title>
+  <style>
+    body {
+      background-color: #ffe4e1;
+      text-align: center;
+      font-family: Arial, sans-serif;
+    }
+
+    h1 {
+      font-size: 30px;
+      text-transform: uppercase;
+      color: blue;
+      margin-top: 50px;
+    }
+
+    img {
+      margin-top: 30px;
+      width: 150px;
+      height: auto;
+    }
+
+    .form-container {
+      margin-top: 50px;
+    }
+
+    label {
+      font-size: 18px;
+      margin-right: 10px;
+    }
+
+    input[type="text"] {
+      padding: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 8px 15px;
+      font-size: 16px;
+      margin-left: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <h1>My Wedding</h1>
+
+  <img src="images/rose.jpg" alt="Rose Flower" />
+
+  <div class="form-container">
+    <label for="fname">Enter your first name</label>
+    <input type="text" id="fname" name="fname" />
+    <button onclick="alert('Welcome ' + document.getElementById('fname').value + '!')">GO</button>
+  </div>
 </body>
 </html>
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    margin: 0;
-    padding: 0;
-    text-align: center;
-}
-
-.container {
-    max-width: 800px;
-    margin: 50px auto;
-    padding: 20px;
-    background-color: white;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-input, button {
-    padding: 10px;
-    font-size: 16px;
-    margin-top: 10px;
-}
-
-h1 {
-    color: #333;
-}
-
-.results {
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 15px;
-    padding: 10px;
-}
-
-.result-item {
-    background-color: #eaeaea;
-    padding: 10px;
-    border-radius: 5px;
-}
-
-.result-item p {
-    margin: 5px 0;
-}
-
-const namesData = [
-    { firstName: "John", lastName: "Doe", table: 1 },
-    { firstName: "Jane", lastName: "Smith", table: 2 },
-    { firstName: "John", lastName: "Adams", table: 3 },
-    { firstName: "Jake", lastName: "Johnson", table: 4 },
-    { firstName: "John", lastName: "Brown", table: 5 },
-    // Add more names as needed (300+)
-];
-
-function searchNames() {
-    const firstNameInput = document.getElementById('firstNameInput').value.toLowerCase();
-    const resultsDiv = document.getElementById('results');
-
-    // Clear previous results
-    resultsDiv.innerHTML = '';
-
-    // Filter names based on the entered first name
-    const filteredNames = namesData.filter(name =>
-        name.firstName.toLowerCase().includes(firstNameInput)
-    );
-
-    // If no names match
-    if (filteredNames.length === 0) {
-        resultsDiv.innerHTML = '<p>No results found.</p>';
-        return;
-    }
-
-    // Display the filtered results in 3 columns
-    filteredNames.forEach(name => {
-        const resultDiv = document.createElement('div');
-        resultDiv.classList.add('result-item');
-        resultDiv.innerHTML = `
-            <p><strong>First Name:</strong> ${name.firstName}</p>
-            <p><strong>Last Name:</strong> ${name.lastName}</p>
-            <p><strong>Table Number:</strong> ${name.table}</p>
-        `;
-        resultsDiv.appendChild(resultDiv);
-    });
-}
