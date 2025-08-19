@@ -39,28 +39,32 @@
   <h1>My Wedding</h1>
 
   <div class="cell-container">
-    <button onclick="loadExcel()">MY CELL</button>
+    <button onclick="loadCell()">MY CELL</button>
     <input type="text" id="cellValue" readonly />
   </div>
 
-  <!-- SheetJS library for reading XLSX files -->
-  <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+  <!-- Google Visualization API -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script>
-    async function loadExcel() {
-      try {
-        // Fetch the Excel file hosted on GitHub
-        const response = await fetch('files/table.xlsx');
-        const arrayBuffer = await response.arrayBuffer();
+    function loadCell() {
+      const queryString = encodeURIComponent("SELECT A");
+      const sheetID = "1-FtZ-6aXhbLoSqkEdQvJrZFiVwnme9wTpQlLpYTTDf4";
+      const gid = "0"; // GID of the first sheet
+      const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?gid=${gid}&tq=${queryString}`;
 
-        const workbook = XLSX.read(arrayBuffer, { type: "array" });
-        const sheet = workbook.Sheets["Sheet1"];
-        const cellA2 = sheet["A2"] ? sheet["A2"].v : "Not Found";
-
-        document.getElementById("cellValue").value = cellA2;
-      } catch (error) {
-        alert("Failed to load Excel file: " + error);
-      }
+      fetch(url)
+        .then(res => res.text())
+        .then(data => {
+          // Clean JSON response
+          const json = JSON.parse(data.substring(47).slice(0, -2));
+          const cellA2 = json.table.rows[1]?.c[0]?.v || "Not found";
+          document.getElementById("cellValue").value = cellA2;
+        })
+        .catch(err => {
+          alert("Failed to load data from Google Sheet.");
+          console.error(err);
+        });
     }
   </script>
 
