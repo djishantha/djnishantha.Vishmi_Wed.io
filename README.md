@@ -9,23 +9,19 @@
       font-family: Arial, sans-serif;
       padding-top: 50px;
     }
-
     h1 {
       font-size: 30px;
       text-transform: uppercase;
       color: blue;
     }
-
     .cell-container {
       margin-top: 40px;
     }
-
     input[type="text"] {
       padding: 8px;
       font-size: 16px;
       width: 200px;
     }
-
     button {
       padding: 10px 20px;
       font-size: 16px;
@@ -43,27 +39,29 @@
     <input type="text" id="cellValue" readonly />
   </div>
 
-  <!-- Google Visualization API -->
+  <!-- Google Charts loader -->
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
   <script>
     function loadCell() {
-      const queryString = encodeURIComponent("SELECT A");
-      const sheetID = "1-FtZ-6aXhbLoSqkEdQvJrZFiVwnme9wTpQlLpYTTDf4";
-      const gid = "0"; // GID of the first sheet
-      const url = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?gid=${gid}&tq=${queryString}`;
+      const sheetUrl = encodeURIComponent('https://docs.google.com/spreadsheets/d/e/2PACX-1vSzV0tWqebYZW81ZwYVlyNui2pIuZvFYgLdBOrSzq58mfDHbDY8l5YX43kNPoXqWA5_qjGW-LzbGGoI/pubhtml');
+      // Query to select column A
+      const query = 'select A';
+      const queryParam = encodeURIComponent(query);
+      // Build the API URL
+      const url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vSzV0tWqebYZW81ZwYVlyNui2pIuZvFYgLdBOrSzq58mfDHbDY8l5YX43kNPoXqWA5_qjGW-LzbGGoI/gviz/tq?gid=0&tq=${queryParam}`;
 
       fetch(url)
         .then(res => res.text())
-        .then(data => {
-          // Clean JSON response
-          const json = JSON.parse(data.substring(47).slice(0, -2));
-          const cellA2 = json.table.rows[1]?.c[0]?.v || "Not found";
-          document.getElementById("cellValue").value = cellA2;
+        .then(text => {
+          const jsonText = text.substring(text.indexOf('{'), text.lastIndexOf('}') + 1);
+          const json = JSON.parse(jsonText);
+          const value = json.table.rows[1]?.c[0]?.v || 'Not Found';
+          document.getElementById('cellValue').value = value;
         })
         .catch(err => {
-          alert("Failed to load data from Google Sheet.");
           console.error(err);
+          alert('Error loading sheet data.');
         });
     }
   </script>
