@@ -37,7 +37,7 @@
 <body>
   <h1>My Wedding</h1>
 
-  <img src="images/rose.jpg" alt="Rose Flower" />
+ <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fb/Rose_red_1.jpg/320px-Rose_red_1.jpg" alt="Rose Flower" />
 
   <div class="button-container">
     <button onclick="window.location.href='guest.html'">Bride Guest</button>
