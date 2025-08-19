@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<FIND YOUR TABLE>
 <html>
 <head>
   <title>My Wedding</title>
