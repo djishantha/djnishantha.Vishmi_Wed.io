@@ -60,8 +60,8 @@
             { firstName: "Akash", lastName: "Hewapathirana", table: 2 },
             { firstName: "Neetaha", lastName: "Jayakodi", table: 3 },
             { firstName: "Kalhari", lastName: "Fernando", table: 4 },
-            { firstName: "Luxman", lastName: "Jeewantha", table: 3 }
-            { firstName: "Uditha", lastName: "Sirithunga", table: 3 }
+            { firstName: "Luxman", lastName: "Jeewantha", table: 3 },
+            { firstName: "Uditha", lastName: "Sirithunga", table: 3 },
             { firstName: "Shiromi", lastName: "Sirithunga", table: 3 }
         ];
 
