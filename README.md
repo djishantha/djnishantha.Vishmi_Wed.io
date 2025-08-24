@@ -56,11 +56,13 @@
 
     <script>
         const guests = [
-            { firstName: "John", lastName: "Doe", table: 3 },
-            { firstName: "Jane", lastName: "Smith", table: 5 },
-            { firstName: "John", lastName: "Smith", table: 1 },
-            { firstName: "Alice", lastName: "Johnson", table: 2 },
-            { firstName: "Michael", lastName: "Brown", table: 4 }
+            { firstName: "Kumudu", lastName: "Hewapathirana", table: 1 },
+            { firstName: "Akash", lastName: "Hewapathirana", table: 2 },
+            { firstName: "Neetaha", lastName: "Jayakodi", table: 3 },
+            { firstName: "Kalhari", lastName: "Fernando", table: 4 },
+            { firstName: "Luxman", lastName: "Jeewantha", table: 3 }
+            { firstName: "Uditha", lastName: "Sirithunga", table: 3 }
+            { firstName: "Shiromi", lastName: "Sirithunga", table: 3 }
         ];
 
         document.addEventListener("DOMContentLoaded", function () {
