@@ -7,10 +7,9 @@
 </head>
 <body>
     <div class="container">
-        <h1>Welcome to Our Wedding!</h1>
-        <p>Enter your first name to find your table number:</p>
-        <input type="text" id="firstNameInput" placeholder="First Name">
-        <button onclick="findTable()">Table Number</button>
+        <h1>My Wedding</h1>
+        <input type="text" id="firstNameInput" placeholder="Enter your first name">
+        <button id="findTableBtn">Table Number</button>
         <div id="results"></div>
     </div>
 
@@ -18,45 +17,45 @@
 </body>
 </html>
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f4f8;
+    font-family: sans-serif;
+    background-color: #f8f9fa;
     text-align: center;
     padding: 50px;
 }
 
 .container {
-    background: white;
+    background-color: white;
     padding: 30px;
     border-radius: 10px;
     display: inline-block;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 input {
     padding: 10px;
     font-size: 16px;
-    margin-right: 10px;
+    margin: 10px 5px;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 10px 15px;
     font-size: 16px;
-    background-color: #6a5acd;
+    cursor: pointer;
+    background-color: #007bff;
     color: white;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
 }
 
 button:hover {
-    background-color: #5a4bbd;
+    background-color: #0056b3;
 }
 
 #results {
     margin-top: 20px;
     font-size: 18px;
+    color: #333;
 }
-// Guest list stored in JavaScript
 const guests = [
     { firstName: "John", lastName: "Doe", table: 3 },
     { firstName: "Jane", lastName: "Smith", table: 5 },
@@ -65,27 +64,30 @@ const guests = [
     { firstName: "Michael", lastName: "Brown", table: 4 }
 ];
 
-function findTable() {
-    const input = document.getElementById("firstNameInput").value.trim().toLowerCase();
-    const resultsDiv = document.getElementById("results");
-    resultsDiv.innerHTML = "";
+document.addEventListener("DOMContentLoaded", function () {
+    const button = document.getElementById("findTableBtn");
+    button.addEventListener("click", function () {
+        const input = document.getElementById("firstNameInput").value.trim().toLowerCase();
+        const resultsDiv = document.getElementById("results");
+        resultsDiv.innerHTML = "";
 
-    if (!input) {
-        resultsDiv.textContent = "Please enter a first name.";
-        return;
-    }
+        if (!input) {
+            resultsDiv.textContent = "Please enter your first name.";
+            return;
+        }
 
-    const matches = guests.filter(guest => guest.firstName.toLowerCase() === input);
+        const matches = guests.filter(guest => guest.firstName.toLowerCase() === input);
 
-    if (matches.length === 0) {
-        resultsDiv.textContent = "No guest found with that first name.";
-    } else {
-        const list = document.createElement("ul");
-        matches.forEach(guest => {
-            const item = document.createElement("li");
-            item.textContent = `${guest.firstName} ${guest.lastName} - Table ${guest.table}`;
-            list.appendChild(item);
-        });
-        resultsDiv.appendChild(list);
-    }
-}
+        if (matches.length === 0) {
+            resultsDiv.textContent = "No guest found with that first name.";
+        } else {
+            const list = document.createElement("ul");
+            matches.forEach(guest => {
+                const item = document.createElement("li");
+                item.textContent = `${guest.firstName} ${guest.lastName} - Table ${guest.table}`;
+                list.appendChild(item);
+            });
+            resultsDiv.appendChild(list);
+        }
+    });
+});
