@@ -3,46 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1 class="main-welcome">WELCOME !</h1>
-    <h2>Harshana & Vishmi Wedding</h2>
-<h3 class="hotel-name">JETWING BLUE - NEGOMBO</h3>
+    <title>Wedding Table Finder</title>
     <style>
         body {
-    font-family: sans-serif;
-    background-color: #87CEEB;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
+            font-family: sans-serif;
+            background-color: #87CEEB;
+            text-align: center;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
-.main-welcome {
-    font-size: 64px; /* Double typical title (e.g. if original was ~32px) */
-    color: blue;
-    font-family: 'Cursive', 'Brush Script MT', sans-serif;
-    margin-bottom: 10px;
-}
 
-h2 {
-    font-size: 32px;
-    margin: 10px 0;
-}
-.hotel-name {
-    font-size: 16px; /* Half of h2 */
-    color: green;
-    font-family: 'Georgia', 'Times New Roman', serif;
-    margin-top: 5px;
-}
-        .container {
-    background-color: white;
-    padding: 30px;
-    border-radius: 10px;
-    margin: 0 auto;
-    max-width: 500px;
-    width: 90%;
-    box-sizing: border-box;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .main-welcome {
+            font-size: 64px;
+            color: blue;
+            font-family: 'Cursive', 'Brush Script MT', sans-serif;
+            margin-bottom: 10px;
         }
-     
+
+        h2 {
+            font-size: 32px;
+            margin: 10px 0;
+        }
+
+        .hotel-name {
+            font-size: 16px;
+            color: green;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            margin-top: 5px;
+        }
+
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 0 auto;
+            max-width: 500px;
+            width: 90%;
+            box-sizing: border-box;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
         input {
             padding: 10px;
             font-size: 16px;
@@ -62,82 +63,84 @@ h2 {
         button:hover {
             background-color: #0056b3;
         }
-        #findCarParkBtn {
-    margin-top: 20px;
-    padding: 10px 15px;
-    font-size: 16px;
-    cursor: pointer;
-    background-color: #28a745;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
 
-#findCarParkBtn:hover {
-    background-color: #1e7e34;
-}
+        #findCarParkBtn {
+            margin-top: 20px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #findCarParkBtn:hover {
+            background-color: #1e7e34;
+        }
 
         #results {
             margin-top: 20px;
             font-size: 18px;
             color: #333;
         }
+
         .table-plan {
-    margin-top: 30px;
-    max-width: 100%;
-    height: auto;
-    border: 2px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-}
+            margin-top: 30px;
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
     </style>
 </head>
 <body>
+    <h1 class="main-welcome">WELCOME !</h1>
+    <h2>Harshana & Vishmi Wedding</h2>
+    <h3 class="hotel-name">JETWING BLUE - NEGOMBO</h3>
+
     <div class="container">
         <h1>Find Your Table</h1>
         <input type="text" id="firstNameInput" placeholder="Enter your first name">
         <button id="findTableBtn">Table Number</button>
-        <div id="results"></div>
+        <div id="results">Loading guest list...</div>
         <img src="table-plan.jpg" alt="Wedding Table Plan" class="table-plan">
         <button id="findCarParkBtn">Find Your Car Park</button>
     </div>
 
     <script>
-        const guests = [
-            { firstName: "Kumudu", lastName: "Hewapathirana", table: 1 },
-            { firstName: "Uditha", lastName: "Sirithunga", table: 1 },
-            { firstName: "Shiromi", lastName: "Sirithunga", table: 1 },
-            { firstName: "Milani", lastName: "Sirithunga", table: 1 },
-            { firstName: "Latha", lastName: "Galappaththi", table: 1 },
-             { firstName: "Shanthi", lastName: "Galappaththi", table: 1 },
-            { firstName: "Thilani", lastName: "Dias", table: 1 },
-            { firstName: "Ajith", lastName: "Dias", table: 1 },
-            { firstName: "Rekha", lastName: "De Silva", table: 1 },
-            { firstName: "Prabath", lastName: "Kasthuriarachchi", table: 1 },
-            { firstName: "Akash", lastName: "Hewapathirana", table: 2 },
-            { firstName: "Kanaki", lastName: "Hewapathirana", table: 2 },
-            { firstName: "Dulshani", lastName: "Rajapakse", table: 2 },
-            { firstName: "Kavisha", lastName: "Sirithunga", table: 2 },
-            { firstName: "Wagisha", lastName: "Sirithunga", table: 2 },
-            { firstName: "Sadew", lastName: "Dias", table: 2 },
-            { firstName: "Yashith", lastName: "Dias", table: 2},
-            { firstName: "Kisara", lastName: "Kasthuriarachchi", table: 2 },
-            { firstName: "Gangi", lastName: "Galappaththi", table: 2 },
-            { firstName: "Gangi", lastName: "Husband", table: 2 },
-            { firstName: "Neetaha", lastName: "Jayakodi", table: 3 },
-            { firstName: "Kalhari", lastName: "Fernando", table: 3 },
-            { firstName: "Luxman", lastName: "Jeewantha", table: 3 },
-            { firstName: "Indrananda", lastName: "Weerasena", table: 3 },
-            { firstName: "Chandrika", lastName: "Welivita", table: 3 },
-            { firstName: "Peshaka", lastName: "Ranganath", table: 3 },
-         { firstName: "Peshaka", lastName: "Wife", table: 3 },
-         { firstName: "Lakmali", lastName: "Rangani", table: 3 },
-         { firstName: "Nayanagith", lastName: "Dhananjaya", table: 3 },
-            { firstName: "Nayanajith", lastName: "Wife", table: 3 },
-         { firstName: "Saranapala", lastName: "Saranapala", table: 3 },
-        ];
+        let guests = [];
 
-        document.addEventListener("DOMContentLoaded", function () {
+        async function loadGuestList() {
+            const csvUrl = "https://docs.google.com/spreadsheets/d/1-FtZ-6aXhbLoSqkEdQvJrZFiVwnme9wTpQlLpYTTDf4/export?format=csv&id=1-FtZ-6aXhbLoSqkEdQvJrZFiVwnme9wTpQlLpYTTDf4&gid=0";
+            try {
+                const response = await fetch(csvUrl);
+                const csvText = await response.text();
+                const lines = csvText.trim().split("\n");
+
+                // Assuming first row is header
+                for (let i = 1; i < lines.length; i++) {
+                    const [firstName, lastName, table] = lines[i].split(",");
+                    if (firstName && lastName && table) {
+                        guests.push({
+                            firstName: firstName.trim(),
+                            lastName: lastName.trim(),
+                            table: parseInt(table.trim())
+                        });
+                    }
+                }
+
+                document.getElementById("results").textContent = "Enter your first name to find your table.";
+            } catch (error) {
+                document.getElementById("results").textContent = "Failed to load guest list.";
+                console.error("Error loading guest list:", error);
+            }
+        }
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            await loadGuestList();
+
             const button = document.getElementById("findTableBtn");
             button.addEventListener("click", function () {
                 const input = document.getElementById("firstNameInput").value.trim().toLowerCase();
@@ -165,11 +168,11 @@ h2 {
             });
         });
     </script>
+
     <script>
-    document.getElementById("findCarParkBtn").addEventListener("click", function () {
-        // Replace this URL with the actual car park location link
-        window.open("https://maps.app.goo.gl/rW5yMQzisJt6ZzSM8", "_blank");
-    });
-</script>
+        document.getElementById("findCarParkBtn").addEventListener("click", function () {
+            window.open("https://maps.app.goo.gl/rW5yMQzisJt6ZzSM8", "_blank");
+        });
+    </script>
 </body>
 </html>
