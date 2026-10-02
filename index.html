@@ -1,5 +1,7 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
     <meta charset="UTF-8">
@@ -28,19 +30,58 @@
         h1 {
             margin-top: 0;
             color: #1f2937;
-        }
-
-        h2 {
-            margin-top: 35px;
-            color: #1f2937;
-            border-bottom: 1px solid #ddd;
-            padding-bottom: 8px;
+            text-align: center;
         }
 
         .description {
             color: #555;
             line-height: 1.5;
         }
+
+        /* =========================
+           TABS
+        ========================== */
+
+        .tabs {
+            display: flex;
+            margin-top: 25px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 14px 10px;
+            border: none;
+            background: #e5e7eb;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px 6px 0 0;
+            margin: 0;
+        }
+
+        .tab-button:hover {
+            opacity: 0.9;
+        }
+
+        .tab-button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding-top: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* =========================
+           FORM
+        ========================== */
 
         label {
             display: block;
@@ -50,8 +91,7 @@
         }
 
         input[type="file"],
-        input[type="number"],
-        input[type="text"] {
+        input[type="number"] {
             width: 100%;
             box-sizing: border-box;
             padding: 12px;
@@ -69,14 +109,12 @@
             cursor: pointer;
         }
 
-        #mtxProcessBtn,
-        #chnProcessBtn {
+        .processBtn {
             background: #2563eb;
             color: white;
         }
 
-        #mtxDownloadBtn,
-        #chnDownloadBtn {
+        .downloadBtn {
             background: #16a34a;
             color: white;
             display: none;
@@ -90,6 +128,10 @@
         button:hover {
             opacity: 0.9;
         }
+
+        /* =========================
+           INFO / RESULT
+        ========================== */
 
         .info {
             margin-top: 20px;
@@ -108,21 +150,6 @@
             font-family: monospace;
             max-height: 300px;
             overflow-y: auto;
-        }
-
-        .example {
-            background: #fafafa;
-            padding: 15px;
-            border-radius: 6px;
-            margin-top: 20px;
-            font-family: monospace;
-            line-height: 1.5;
-        }
-
-        .separator {
-            height: 2px;
-            background: #ddd;
-            margin: 40px 0;
         }
 
         .success {
@@ -158,246 +185,302 @@
 
 <div class="container">
 
-
     <h1>HYPACK MTX & CHN to XYZ Converter</h1>
 
-
     <p class="description">
-
-        Convert HYPACK files directly in your browser.
-
-        <br><br>
-
-        <strong>MTX:</strong>
-        Creates an XYZ file containing only the four
-        outside corner coordinates.
-
-        <br>
-
-        <strong>CHN:</strong>
-        Extracts the channel nodes and creates an
-        X Y Z XYZ file.
-
+        Convert HYPACK MTX and CHN files directly in your browser.
+        No files are uploaded to a server.
     </p>
-
 
 
     <!-- =====================================================
-         MTX SECTION
+         TABS
     ====================================================== -->
 
-    <h2>1. MTX → Four Corner XYZ</h2>
+    <div class="tabs">
 
+        <button
+            class="tab-button active"
+            onclick="openTab('mtxTab', this)"
+        >
+            MTX → Four Corner XYZ
+        </button>
 
-    <p class="description">
-
-        Select a HYPACK MTX file.
-
-        The MTX values are interpreted as:
-
-        <br><br>
-
-        X<br>
-        Y<br>
-        Width<br>
-        First Leg / Length<br>
-        X Grid Spacing<br>
-        Y Grid Spacing<br>
-        Bearing from North
-
-        <br><br>
-
-        Bearing is measured <strong>clockwise from North</strong>.
-
-    </p>
-
-
-    <label for="mtxFile">
-        Select HYPACK MTX file
-    </label>
-
-
-    <input
-        type="file"
-        id="mtxFile"
-        accept=".mtx,.txt"
-    >
-
-
-
-    <label for="mtxZ">
-        Z value for four corners
-    </label>
-
-
-    <input
-        type="number"
-        id="mtxZ"
-        value="0"
-        step="0.1"
-    >
-
-
-
-    <div class="info">
-
-        <strong>Example MTX values:</strong>
-
-        <br><br>
-
-        1223885.40<br>
-        186682.92<br>
-        486.00<br>
-        795.00<br>
-        3.00<br>
-        3.00<br>
-        16.80
-
-        <br><br>
-
-        Result:
-
-        <br>
-
-        1223885.400 186682.920 0.0<br>
-        1224115.180 187443.989 0.0<br>
-        1224580.438 187303.520 0.0<br>
-        1224350.657 186542.451 0.0
+        <button
+            class="tab-button"
+            onclick="openTab('chnTab', this)"
+        >
+            CHN → XYZ Nodes Only
+        </button>
 
     </div>
 
 
-
-    <button id="mtxProcessBtn">
-        Process MTX File
-    </button>
-
-
-    <button
-        id="mtxDownloadBtn"
-    >
-        Download Four Corner XYZ
-    </button>
-
-
-    <button
-        class="clearBtn"
-        id="mtxClearBtn"
-    >
-        Clear MTX
-    </button>
-
-
-
-    <div id="mtxStatus"></div>
-
-
-    <div
-        id="mtxResult"
-        class="result"
-    ></div>
-
-
-
     <!-- =====================================================
-         CHN SECTION
+         MTX TAB
     ====================================================== -->
 
-    <div class="separator"></div>
-
-
-    <h2>2. CHN → XYZ Nodes Only</h2>
-
-
-    <p class="description">
-
-        Select a HYPACK CHN file.
-
-        The converter extracts the channel nodes only.
-
-        <br><br>
-
-        The output contains:
-
-        <br>
-
-        <strong>X Y Z</strong>
-
-        <br><br>
-
-        Node numbers, faces, segments, labels and other
-        CHN information are not included.
-
-    </p>
-
-
-
-    <label for="chnFile">
-        Select HYPACK CHN file
-    </label>
-
-
-    <input
-        type="file"
-        id="chnFile"
-        accept=".chn,.txt"
+    <div
+        id="mtxTab"
+        class="tab-content active"
     >
 
+        <h2>MTX → Four Corner XYZ</h2>
+
+        <p class="description">
+
+            Select a HYPACK MTX file.
+
+            <br><br>
+
+            The MTX values are interpreted as:
+
+            <br><br>
+
+            X<br>
+            Y<br>
+            Width<br>
+            First Leg / Length<br>
+            X Grid Spacing<br>
+            Y Grid Spacing<br>
+            Bearing from North
+
+            <br><br>
+
+            Bearing is measured
+            <strong>clockwise from North</strong>.
+
+            <br><br>
+
+            The output contains only the four
+            outside corner coordinates.
+
+        </p>
 
 
-    <div class="info">
+        <label for="mtxFile">
+            Select HYPACK MTX file
+        </label>
 
-        <strong>CHN output example:</strong>
+        <input
+            type="file"
+            id="mtxFile"
+            accept=".mtx,.txt"
+        >
 
-        <br><br>
 
-        979390.720 179494.630 37.470<br>
-        979395.120 179498.210 37.520<br>
-        979401.330 179502.440 37.610
+        <label for="mtxZ">
+            Z value for four corners
+        </label>
 
-        <br><br>
+        <input
+            type="number"
+            id="mtxZ"
+            value="0"
+            step="0.1"
+        >
 
-        Only X, Y and Z are written.
+
+        <div class="info">
+
+            <strong>Example MTX values:</strong>
+
+            <br><br>
+
+            1223885.40<br>
+            186682.92<br>
+            486.00<br>
+            795.00<br>
+            3.00<br>
+            3.00<br>
+            16.80
+
+            <br><br>
+
+            <strong>Result:</strong>
+
+            <br><br>
+
+            1223885.400 186682.920 0.0<br>
+            1224115.180 187443.989 0.0<br>
+            1224580.438 187303.520 0.0<br>
+            1224350.657 186542.451 0.0
+
+        </div>
+
+
+        <button
+            id="mtxProcessBtn"
+            class="processBtn"
+        >
+            Process MTX File
+        </button>
+
+
+        <button
+            id="mtxDownloadBtn"
+            class="downloadBtn"
+        >
+            Download Four Corner XYZ
+        </button>
+
+
+        <button
+            id="mtxClearBtn"
+            class="clearBtn"
+        >
+            Clear
+        </button>
+
+
+        <div id="mtxStatus"></div>
+
+        <div
+            id="mtxResult"
+            class="result"
+        ></div>
 
     </div>
 
 
-
-    <button id="chnProcessBtn">
-        Process CHN File
-    </button>
-
-
-    <button
-        id="chnDownloadBtn"
-    >
-        Download Nodes XYZ
-    </button>
-
-
-    <button
-        class="clearBtn"
-        id="chnClearBtn"
-    >
-        Clear CHN
-    </button>
-
-
-
-    <div id="chnStatus"></div>
-
+    <!-- =====================================================
+         CHN TAB
+    ====================================================== -->
 
     <div
-        id="chnResult"
-        class="result"
-    ></div>
+        id="chnTab"
+        class="tab-content"
+    >
+
+        <h2>CHN → XYZ Nodes Only</h2>
+
+        <p class="description">
+
+            Select a HYPACK CHN file.
+
+            <br><br>
+
+            The converter extracts the channel nodes only.
+
+            <br><br>
+
+            The output contains:
+
+            <br><br>
+
+            <strong>X Y Z</strong>
+
+            <br><br>
+
+            Node numbers, faces, segments, labels and other
+            CHN information are not included.
+
+        </p>
+
+
+        <label for="chnFile">
+            Select HYPACK CHN file
+        </label>
+
+        <input
+            type="file"
+            id="chnFile"
+            accept=".chn,.txt"
+        >
+
+
+        <div class="info">
+
+            <strong>CHN output example:</strong>
+
+            <br><br>
+
+            979390.720 179494.630 37.470<br>
+            979395.120 179498.210 37.520<br>
+            979401.330 179502.440 37.610
+
+            <br><br>
+
+            Only X, Y and Z are written.
+
+        </div>
+
+
+        <button
+            id="chnProcessBtn"
+            class="processBtn"
+        >
+            Process CHN File
+        </button>
+
+
+        <button
+            id="chnDownloadBtn"
+            class="downloadBtn"
+        >
+            Download Nodes XYZ
+        </button>
+
+
+        <button
+            id="chnClearBtn"
+            class="clearBtn"
+        >
+            Clear
+        </button>
+
+
+        <div id="chnStatus"></div>
+
+        <div
+            id="chnResult"
+            class="result"
+        ></div>
+
+    </div>
 
 
 </div>
 
 
-
 <script>
+
+
+/* ============================================================
+   TAB CONTROL
+============================================================ */
+
+function openTab(tabId, button) {
+
+    const tabs =
+        document.querySelectorAll(".tab-content");
+
+    tabs.forEach(function(tab) {
+
+        tab.classList.remove("active");
+
+    });
+
+
+    const buttons =
+        document.querySelectorAll(".tab-button");
+
+    buttons.forEach(function(btn) {
+
+        btn.classList.remove("active");
+
+    });
+
+
+    document
+        .getElementById(tabId)
+        .classList.add("active");
+
+
+    button.classList.add("active");
+
+}
+
 
 
 /* ============================================================
@@ -418,7 +501,7 @@ let chnOriginalFileName = "";
 
 document
 .getElementById("mtxProcessBtn")
-.addEventListener("click", function () {
+.addEventListener("click", function() {
 
 
     const fileInput =
@@ -438,18 +521,15 @@ document
 
 
     const downloadBtn =
-        document.getElementById(
-            "mtxDownloadBtn"
-        );
+        document.getElementById("mtxDownloadBtn");
 
 
     if (!fileInput.files.length) {
 
-        alert(
-            "Please select an MTX file."
-        );
+        alert("Please select an MTX file.");
 
         return;
+
     }
 
 
@@ -459,11 +539,10 @@ document
 
     if (!Number.isFinite(zValue)) {
 
-        alert(
-            "Please enter a valid Z value."
-        );
+        alert("Please enter a valid Z value.");
 
         return;
+
     }
 
 
@@ -487,10 +566,6 @@ document
                 event.target.result;
 
 
-            /*
-             * Read MTX numeric values.
-             */
-
             const values =
                 extractMTXValues(text);
 
@@ -499,17 +574,22 @@ document
 
                 status.innerHTML =
                     "<div class='error'>" +
+
                     "<strong>Error:</strong><br>" +
+
                     "Could not find the required " +
                     "7 MTX values.<br>" +
+
                     "Values found: " +
                     values.length +
+
                     "</div>";
 
                 downloadBtn.style.display =
                     "none";
 
                 return;
+
             }
 
 
@@ -522,24 +602,21 @@ document
              * 3 = First Leg / Length
              * 4 = Grid X
              * 5 = Grid Y
-             * 6 = Bearing from North
+             * 6 = Bearing
              */
+
 
             const x0 =
                 values[0];
 
-
             const y0 =
                 values[1];
-
 
             const width =
                 values[2];
 
-
             const length =
                 values[3];
-
 
             const bearingDeg =
                 values[6];
@@ -581,7 +658,7 @@ document
 
 
             /*
-             * Show status.
+             * Status.
              */
 
             status.innerHTML =
@@ -593,18 +670,22 @@ document
 
                 "X: " +
                 x0 +
+
                 "<br>" +
 
                 "Y: " +
                 y0 +
+
                 "<br>" +
 
                 "Width: " +
                 width +
+
                 "<br>" +
 
                 "First Leg: " +
                 length +
+
                 "<br>" +
 
                 "Bearing from North: " +
@@ -620,7 +701,7 @@ document
 
 
             /*
-             * Show result.
+             * Preview.
              */
 
             result.textContent =
@@ -628,7 +709,7 @@ document
 
 
             /*
-             * Show download button.
+             * Show download.
              */
 
             downloadBtn.style.display =
@@ -657,18 +738,14 @@ function extractMTXValues(text) {
     let values = [];
 
 
-    for (
-        let line of lines
-    ) {
+    for (let line of lines) {
 
 
         line =
             line.trim();
 
 
-        if (
-            line === ""
-        ) {
+        if (line === "") {
 
             continue;
 
@@ -693,9 +770,7 @@ function extractMTXValues(text) {
             );
 
 
-        if (
-            line.trim() === ""
-        ) {
+        if (line.trim() === "") {
 
             continue;
 
@@ -717,17 +792,8 @@ function extractMTXValues(text) {
             matches.length > 0
         ) {
 
-
-            /*
-             * MTX parameters are stored
-             * one value per line in the
-             * files used here.
-             */
-
             const value =
-                Number(
-                    matches[0]
-                );
+                Number(matches[0]);
 
 
             if (
@@ -772,6 +838,7 @@ function calculateCorners(
      * 270° = West
      */
 
+
     const bearing =
         bearingDeg *
         Math.PI /
@@ -785,7 +852,6 @@ function calculateCorners(
     const ux =
         Math.sin(bearing);
 
-
     const uy =
         Math.cos(bearing);
 
@@ -793,12 +859,11 @@ function calculateCorners(
     /*
      * Perpendicular direction.
      *
-     * This gives clockwise numbering.
+     * Clockwise numbering.
      */
 
     const vx =
         Math.cos(bearing);
-
 
     const vy =
         -Math.sin(bearing);
@@ -811,9 +876,7 @@ function calculateCorners(
     const p1 = {
 
         x: x0,
-
         y: y0,
-
         z: z
 
     };
@@ -821,8 +884,6 @@ function calculateCorners(
 
     /*
      * Corner 2
-     *
-     * Move first-leg length.
      */
 
     const p2 = {
@@ -842,8 +903,6 @@ function calculateCorners(
 
     /*
      * Corner 3
-     *
-     * Move length + width.
      */
 
     const p3 = {
@@ -899,7 +958,7 @@ function calculateCorners(
 
 document
 .getElementById("mtxDownloadBtn")
-.addEventListener("click", function () {
+.addEventListener("click", function() {
 
 
     if (!mtxOutputText) {
@@ -909,14 +968,13 @@ document
         );
 
         return;
+
     }
 
 
     const blob =
         new Blob(
-            [
-                mtxOutputText
-            ],
+            [mtxOutputText],
             {
                 type:
                     "text/plain;charset=utf-8"
@@ -949,22 +1007,14 @@ document
         "_four_corners.xyz";
 
 
-    document.body.appendChild(
-        link
-    );
-
+    document.body.appendChild(link);
 
     link.click();
 
-
-    document.body.removeChild(
-        link
-    );
+    document.body.removeChild(link);
 
 
-    URL.revokeObjectURL(
-        url
-    );
+    URL.revokeObjectURL(url);
 
 });
 
@@ -976,7 +1026,7 @@ document
 
 document
 .getElementById("mtxClearBtn")
-.addEventListener("click", function () {
+.addEventListener("click", function() {
 
 
     document.getElementById(
@@ -1001,8 +1051,7 @@ document
 
     document.getElementById(
         "mtxDownloadBtn"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     mtxOutputText = "";
@@ -1019,7 +1068,7 @@ document
 
 document
 .getElementById("chnProcessBtn")
-.addEventListener("click", function () {
+.addEventListener("click", function() {
 
 
     const fileInput =
@@ -1042,11 +1091,10 @@ document
 
     if (!fileInput.files.length) {
 
-        alert(
-            "Please select a CHN file."
-        );
+        alert("Please select a CHN file.");
 
         return;
+
     }
 
 
@@ -1069,10 +1117,6 @@ document
             const text =
                 event.target.result;
 
-
-            /*
-             * Convert CHN to XYZ.
-             */
 
             const points =
                 extractCHNNodes(text);
@@ -1097,15 +1141,13 @@ document
                     "</div>";
 
 
-                result.textContent =
-                    "";
-
+                result.textContent = "";
 
                 downloadBtn.style.display =
                     "none";
 
-
                 return;
+
             }
 
 
@@ -1118,11 +1160,11 @@ document
                 .map(function(point) {
 
                     return (
-                        point.x.toFixed(2) +
+                        point.x.toFixed(3) +
                         " " +
-                        point.y.toFixed(2) +
+                        point.y.toFixed(3) +
                         " " +
-                        point.z.toFixed(1)
+                        point.z.toFixed(3)
                     );
 
                 })
@@ -1142,18 +1184,13 @@ document
 
                 "Nodes extracted: " +
 
-                points.length
-                .toLocaleString() +
+                points.length.toLocaleString() +
 
                 "</div>";
 
 
             /*
-             * Show preview.
-
-             * Showing first 20 nodes keeps
-             * the browser page fast even
-             * with large CHN files.
+             * Preview first 20 nodes.
              */
 
             result.textContent =
@@ -1162,11 +1199,11 @@ document
                 .map(function(point) {
 
                     return (
-                        point.x.toFixed(2) +
+                        point.x.toFixed(3) +
                         " " +
-                        point.y.toFixed(2) +
+                        point.y.toFixed(3) +
                         " " +
-                        point.z.toFixed(1)
+                        point.z.toFixed(3)
                     );
 
                 })
@@ -1209,139 +1246,144 @@ document
 
 function extractCHNNodes(text) {
 
-    const lines = text.split(/\r?\n/);
+
+    const lines =
+        text.split(/\r?\n/);
+
 
     let points = [];
-    const seen = new Set();
+
 
     /*
-     * Actual HYPACK CHN structure:
-     *
-     * NODES 111
-     *
-     * X Y Z NodeNumber
-     * X Y Z NodeNumber
-     * ...
-     *
-     * Example:
-     * 1255765.69 217744.49 8.00 0
-     * 1255863.50 217765.32 10.00 1
+     * Prevent duplicate points.
      */
 
-    let nodeCount = 0;
-    let nodeStart = -1;
+    const seen =
+        new Set();
 
-    for (let i = 0; i < lines.length; i++) {
 
-        const line = lines[i].trim();
+    for (let line of lines) {
 
-        const match = line.match(
-            /^NODES\s+(\d+)/i
-        );
 
-        if (match) {
+        line =
+            line.trim();
 
-            nodeCount = Number(match[1]);
-            nodeStart = i + 1;
-
-            break;
-        }
-    }
-
-    if (
-        nodeStart === -1 ||
-        !Number.isFinite(nodeCount) ||
-        nodeCount <= 0
-    ) {
-        return [];
-    }
-
-    /*
-     * Read the node records.
-     * Stop after the number of nodes specified
-     * by the NODES header.
-     */
-    let recordsRead = 0;
-
-    for (
-        let i = nodeStart;
-        i < lines.length &&
-        recordsRead < nodeCount;
-        i++
-    ) {
-
-        let line = lines[i].trim();
 
         if (line === "") {
+
             continue;
+
         }
+
 
         /*
-         * The next CHN section may start here.
-         * This protects against malformed files.
+         * Skip comments.
          */
-        if (/^(FACES|SEGMENTS|LABELS|ZONES|ELEVATION)\b/i.test(line)) {
-            break;
+
+        if (
+            line.startsWith("#") ||
+            line.startsWith("//")
+        ) {
+
+            continue;
+
         }
 
-        const parts = line
+
+        /*
+         * Convert commas and tabs
+         * to spaces.
+         */
+
+        const parts =
+            line
             .replace(/,/g, " ")
             .trim()
             .split(/\s+/);
 
-        if (parts.length < 4) {
-            continue;
-        }
 
         /*
-         * IMPORTANT:
-         * HYPACK CHN uses:
-         *
-         * X Y Z NodeNumber
-         *
-         * NOT:
+         * Expected node record:
          *
          * NodeNumber X Y Z
          */
-        const x = Number(parts[0]);
-        const y = Number(parts[1]);
-        const z = Number(parts[2]);
-        const node = Number(parts[3]);
 
         if (
+            parts.length < 4
+        ) {
+
+            continue;
+
+        }
+
+
+        const node =
+            Number(parts[0]);
+
+        const x =
+            Number(parts[1]);
+
+        const y =
+            Number(parts[2]);
+
+        const z =
+            Number(parts[3]);
+
+
+        /*
+         * All four must be numeric.
+         */
+
+        if (
+            !Number.isFinite(node) ||
             !Number.isFinite(x) ||
             !Number.isFinite(y) ||
-            !Number.isFinite(z) ||
-            !Number.isFinite(node)
+            !Number.isFinite(z)
         ) {
+
             continue;
+
         }
+
+
+        /*
+         * Node number should be integer.
+         */
 
         if (
             Math.abs(
-                node - Math.round(node)
+                node -
+                Math.round(node)
             ) > 0.000001
         ) {
+
             continue;
+
         }
 
+
         /*
-         * Coordinate check.
-         * This prevents headers or unrelated small
-         * values from being treated as coordinates.
+         * State Plane coordinate check.
+         *
+         * This prevents headers and unrelated
+         * small numbers from being interpreted
+         * as nodes.
          */
+
         if (
             Math.abs(x) < 100000 ||
             Math.abs(y) < 10000
         ) {
+
             continue;
+
         }
 
-        recordsRead++;
 
         /*
          * Duplicate check.
          */
+
         const key =
             x.toFixed(6) +
             "|" +
@@ -1349,21 +1391,38 @@ function extractCHNNodes(text) {
             "|" +
             z.toFixed(6);
 
-        if (seen.has(key)) {
+
+        if (
+            seen.has(key)
+        ) {
+
             continue;
+
         }
+
 
         seen.add(key);
 
+
+        /*
+         * Save only X Y Z.
+         */
+
         points.push({
+
             x: x,
             y: y,
             z: z
+
         });
+
     }
 
+
     return points;
+
 }
+
 
 
 /* ============================================================
@@ -1372,7 +1431,7 @@ function extractCHNNodes(text) {
 
 document
 .getElementById("chnDownloadBtn")
-.addEventListener("click", function () {
+.addEventListener("click", function() {
 
 
     if (!chnOutputText) {
@@ -1382,14 +1441,13 @@ document
         );
 
         return;
+
     }
 
 
     const blob =
         new Blob(
-            [
-                chnOutputText
-            ],
+            [chnOutputText],
             {
                 type:
                     "text/plain;charset=utf-8"
@@ -1422,22 +1480,14 @@ document
         "_nodes.xyz";
 
 
-    document.body.appendChild(
-        link
-    );
-
+    document.body.appendChild(link);
 
     link.click();
 
-
-    document.body.removeChild(
-        link
-    );
+    document.body.removeChild(link);
 
 
-    URL.revokeObjectURL(
-        url
-    );
+    URL.revokeObjectURL(url);
 
 });
 
@@ -1449,7 +1499,7 @@ document
 
 document
 .getElementById("chnClearBtn")
-.addEventListener("click", function () {
+.addEventListener("click", function() {
 
 
     document.getElementById(
@@ -1469,8 +1519,7 @@ document
 
     document.getElementById(
         "chnDownloadBtn"
-    ).style.display =
-        "none";
+    ).style.display = "none";
 
 
     chnOutputText = "";
@@ -1479,8 +1528,11 @@ document
 
 });
 
+
 </script>
 
 
 </body>
+
 </html>
+```
