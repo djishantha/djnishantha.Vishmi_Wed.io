@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYPACK XYZ Tools</title>
+<style>
+
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1f2937;
+            text-align: center;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           TABS
+        ========================== */
+
+        .tabs {
+            display: flex;
+            margin-top: 25px;
+            border-bottom: 2px solid #ddd;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 14px 10px;
+            border: none;
+            background: #e5e7eb;
+            color: #333;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 6px 6px 0 0;
+            margin: 0;
+        }
+
+        .tab-button:hover {
+            opacity: 0.9;
+        }
+
+        .tab-button.active {
+            background: #2563eb;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding-top: 25px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* =========================
+           FORM
+        ========================== */
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 13px 22px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .processBtn {
+            background: #2563eb;
+            color: white;
+        }
+
+        .downloadBtn {
+            background: #16a34a;
+            color: white;
+            display: none;
+        }
+
+        .clearBtn {
+            background: #6b7280;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        /* =========================
+           INFO / RESULT
+        ========================== */
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef6ff;
+            border-left: 4px solid #2563eb;
+            line-height: 1.5;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .success {
+            margin-top: 20px;
+            padding: 15px;
+            background: #ecfdf5;
+            border-left: 4px solid #16a34a;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background: #fef2f2;
+            border-left: 4px solid #dc2626;
+        }
+
+        .corners {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border-radius: 6px;
+            font-family: monospace;
+            white-space: pre-wrap;
+        }
+
+    
+
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f2f4f7;
+
+            margin: 0;
+
+            padding: 30px;
+
+            color: #222;
+        }
+
+
+        .container {
+
+            max-width: 850px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 15px
+                rgba(0,0,0,0.12);
+        }
+
+
+        h1 {
+
+            margin-top: 0;
+
+            color: #1f4e79;
+
+            text-align: center;
+        }
+
+
+        .description {
+
+            text-align: center;
+
+            color: #555;
+
+            margin-bottom: 30px;
+
+            line-height: 1.5;
+        }
+
+
+        .section {
+
+            border:
+                1px solid #d9d9d9;
+
+            border-radius: 8px;
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+            background: #fafafa;
+        }
+
+
+        .section h2 {
+
+            margin-top: 0;
+
+            font-size: 19px;
+
+            color: #1f4e79;
+        }
+
+
+        label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        input[type="file"] {
+
+            width: 100%;
+
+            padding: 10px;
+
+            background: white;
+
+            border:
+                1px solid #bbb;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+
+        .file-name {
+
+            margin-top: 8px;
+
+            color: #555;
+
+            font-size: 14px;
+
+            word-break: break-all;
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #1f6feb;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        button:hover {
+
+            background: #1557b0;
+        }
+
+
+        button:disabled {
+
+            background: #999;
+
+            cursor: not-allowed;
+        }
+
+
+        #downloadButton {
+
+            background: #198754;
+
+            margin-top: 5px;
+        }
+
+
+        #downloadButton:hover {
+
+            background: #146c43;
+        }
+
+
+        #refreshButton {
+
+            background: #6c757d;
+
+            margin-top: 12px;
+        }
+
+
+        #refreshButton:hover {
+
+            background: #5a6268;
+        }
+
+
+        #status {
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #eef5ff;
+
+            border-left:
+                5px solid #1f6feb;
+
+            border-radius: 5px;
+
+            white-space: pre-line;
+
+            line-height: 1.5;
+        }
+
+
+        #progressContainer {
+
+            display: none;
+
+            margin-top: 15px;
+        }
+
+
+        progress {
+
+            width: 100%;
+
+            height: 22px;
+        }
+
+
+        #progressText {
+
+            text-align: center;
+
+            margin-top: 5px;
+
+            font-weight: bold;
+        }
+
+
+        .formula {
+
+            background: #fff;
+
+            border:
+                1px solid #ddd;
+
+            padding: 14px;
+
+            border-radius: 6px;
+
+            text-align: center;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+
+        .note {
+
+            font-size: 13px;
+
+            color: #666;
+
+            margin-top: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        #downloadSection {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border:
+                2px solid #198754;
+
+            border-radius: 8px;
+
+            background: #f1fff7;
+        }
+
+
+        #downloadSection h3 {
+
+            color: #198754;
+
+            margin-top: 0;
+        }
+
+
+        #outputFileName {
+
+            background: white;
+
+            border:
+                1px solid #ddd;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            margin-bottom: 12px;
+
+            word-break: break-all;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 14px;
+        }
+
+
+        .info-box {
+
+            background: #fff8e1;
+
+            border-left:
+                5px solid #f0ad4e;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            border-radius: 4px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .button-area {
+
+            margin-top: 20px;
+        }
+
+    
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1f2937;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
+
+        .invert-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .invert-container label {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .invert-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 13px 22px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #processBtn {
+            background: #2563eb;
+            color: white;
+        }
+
+        #downloadBtn {
+            background: #16a34a;
+            color: white;
+            display: none;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef6ff;
+            border-left: 4px solid #2563eb;
+            line-height: 1.6;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .example {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-family: monospace;
+            line-height: 1.6;
+        }
+    
+
+
+/* ===============================
+   FOUR-TAB COMBINED PAGE
+   =============================== */
+.main-container {
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+}
+
+.main-title {
+    margin-top: 0;
+    color: #1f4e79;
+    text-align: center;
+}
+
+.main-description {
+    text-align: center;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.main-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.main-tab-button {
+    flex: 1;
+    padding: 14px 10px;
+    border: none;
+    background: #e5e7eb;
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+}
+
+.main-tab-button:hover { opacity: .9; }
+.main-tab-button.active { background: #2563eb; color: white; }
+
+.main-tab-content {
+    display: none;
+    padding-top: 25px;
+}
+.main-tab-content.active { display: block; }
+
+/* Prevent the original first-page nested tab bar from appearing. */
+#mtxTab, #chnTab {
+    padding-top: 0;
+}
+
+@media (max-width: 700px) {
+    .main-container { padding: 18px; }
+    .main-tabs { flex-wrap: wrap; }
+    .main-tab-button { flex: 1 1 48%; }
+}
+
+</style>
+</head>
+<body>
+<div class="main-container">
+    <h1 class="main-title">HYPACK XYZ Tools</h1>
+    <div class="main-description">
+        HYPACK MTX / CHN extraction, VDATUM Z adjustment, and XYZ Z value adjustment tools.
+        All processing is performed locally in your browser.
+    </div>
+
+    <div class="main-tabs">
+        <button class="main-tab-button active" onclick="openMainTab('mtxMainTab', this)">MTX → Four Corner XYZ</button>
+        <button class="main-tab-button" onclick="openMainTab('chnMainTab', this)">CHN → XYZ Nodes</button>
+        <button class="main-tab-button" onclick="openMainTab('vdatumMainTab', this)">VDATUM Z Adjuster</button>
+        <button class="main-tab-button" onclick="openMainTab('zadjustMainTab', this)">Z Adjust / Invert / Round</button>
+    </div>
+
+    <div id="mtxMainTab" class="main-tab-content active">
+        <div class="tab-content active" id="mtxTab">
+<h2>MTX → Four Corner XYZ</h2>
+<p class="description">
+
+            Select a HYPACK MTX file.
+
+            <br/><br/>
+
+            The MTX values are interpreted as:
+
+            <br/><br/>
+
+            X<br/>
+            Y<br/>
+            Width<br/>
+            First Leg / Length<br/>
+            X Grid Spacing<br/>
+            Y Grid Spacing<br/>
+            Bearing from North
+
+            <br/><br/>
+
+            Bearing is measured
+            <strong>clockwise from North</strong>.
+
+            <br/><br/>
+
+            The output contains only the four
+            outside corner coordinates.
+
+        </p>
+<label for="mtxFile">
+            Select HYPACK MTX file
+        </label>
+<input accept=".mtx,.txt" id="mtxFile" type="file"/>
+<label for="mtxZ">
+            Z value for four corners
+        </label>
+<input id="mtxZ" step="0.1" type="number" value="0"/>
+<div class="info">
+<strong>Example MTX values:</strong>
+<br/><br/>
+
+            1223885.40<br/>
+            186682.92<br/>
+            486.00<br/>
+            795.00<br/>
+            3.00<br/>
+            3.00<br/>
+            16.80
+
+            <br/><br/>
+<strong>Result:</strong>
+<br/><br/>
+
+            1223885.400 186682.920 0.0<br/>
+            1224115.180 187443.989 0.0<br/>
+            1224580.438 187303.520 0.0<br/>
+            1224350.657 186542.451 0.0
+
+        </div>
+<button class="processBtn" id="mtxProcessBtn">
+            Process MTX File
+        </button>
+<button class="downloadBtn" id="mtxDownloadBtn">
+            Download Four Corner XYZ
+        </button>
+<button class="clearBtn" id="mtxClearBtn">
+            Clear
+        </button>
+<div id="mtxStatus"></div>
+<div class="result" id="mtxResult"></div>
+</div>
+    </div>
+
+    <div id="chnMainTab" class="main-tab-content">
+        <div class="tab-content" id="chnTab">
+<h2>CHN → XYZ Nodes Only</h2>
+<p class="description">
+
+            Select a HYPACK CHN file.
+
+            <br/><br/>
+
+            The converter extracts the channel nodes only.
+
+            <br/><br/>
+
+            The output contains:
+
+            <br/><br/>
+<strong>X Y Z</strong>
+<br/><br/>
+
+            Node numbers, faces, segments, labels and other
+            CHN information are not included.
+
+        </p>
+<label for="chnFile">
+            Select HYPACK CHN file
+        </label>
+<input accept=".chn,.txt" id="chnFile" type="file"/>
+<div class="info">
+<strong>CHN output example:</strong>
+<br/><br/>
+
+            979390.720 179494.630 37.470<br/>
+            979395.120 179498.210 37.520<br/>
+            979401.330 179502.440 37.610
+
+            <br/><br/>
+
+            Only X, Y and Z are written.
+
+        </div>
+<button class="processBtn" id="chnProcessBtn">
+            Process CHN File
+        </button>
+<button class="downloadBtn" id="chnDownloadBtn">
+            Download Nodes XYZ
+        </button>
+<button class="clearBtn" id="chnClearBtn">
+            Clear
+        </button>
+<div id="chnStatus"></div>
+<div class="result" id="chnResult"></div>
+</div>
+    </div>
+
+    <div id="vdatumMainTab" class="main-tab-content">
+        
+<h1>
+        HYPACK XYZ VDATUM Z Adjuster
+    </h1>
+<div class="description">
+
+        Match every survey XYZ point to the
+        closest VDATUM XY point and calculate
+        the adjusted Z value.
+
+    </div>
+ =========================================
+         VDATUM FILE
+         ========================================= 
+<div class="section">
+<h2>
+            1. Select VDATUM XYZ File
+        </h2>
+<label for="vdatumFile">
+
+            VDATUM MLLW XYZ File
+
+        </label>
+<input accept=".xyz,.txt" id="vdatumFile" type="file"/>
+<div class="file-name" id="vdatumName">
+
+            No VDATUM file selected
+
+        </div>
+<div class="note">
+
+            Select the VDATUM XYZ file containing
+            X, Y and Z values.
+
+        </div>
+</div>
+ =========================================
+         SURVEY FILE
+         ========================================= 
+<div class="section">
+<h2>
+            2. Select Survey / Second XYZ File
+        </h2>
+<label for="surveyFile">
+
+            XYZ Data File to Process
+
+        </label>
+<input accept=".xyz,.txt" id="surveyFile" type="file"/>
+<div class="file-name" id="surveyName">
+
+            No survey file selected
+
+        </div>
+<div class="note">
+
+            X and Y from this file will be retained.
+            The Z value will be adjusted using the
+            closest VDATUM point.
+
+        </div>
+</div>
+ =========================================
+         CALCULATION
+         ========================================= 
+<div class="section">
+<h2>
+            Calculation
+        </h2>
+<div class="formula">
+
+            New Z = Survey Z + VDATUM Z
+
+        </div>
+<div class="note">
+
+            For every point in the survey file,
+            the program finds the VDATUM point
+            with the closest X and Y location.
+
+        </div>
+<div class="info-box">
+<b>Example:</b>
+<br/><br/>
+
+            Survey Z = 8.30
+
+            <br/>
+
+            VDATUM Z = -0.71
+
+            <br/><br/>
+
+            New Z =
+            8.30 + (-0.71) =
+            <b>7.59</b>
+</div>
+</div>
+ =========================================
+         PROCESS BUTTON
+         ========================================= 
+<div class="button-area">
+<button id="processButton">
+
+            Process XYZ File
+
+        </button>
+<button id="refreshButton">
+
+            Refresh / Clear All
+
+        </button>
+</div>
+ =========================================
+         PROGRESS
+         ========================================= 
+<div id="progressContainer">
+<progress id="progressBar" max="100" value="0">
+</progress>
+<div id="progressText">
+
+            0%
+
+        </div>
+</div>
+ =========================================
+         STATUS
+         ========================================= 
+<div id="status">
+
+        Select both files to begin.
+
+    </div>
+ =========================================
+         DOWNLOAD SECTION
+         ========================================= 
+<div id="downloadSection">
+<h3>
+
+            Output File Ready
+
+        </h3>
+<div id="outputFileName">
+</div>
+<button id="downloadButton">
+
+            Download XYZ File
+
+        </button>
+</div>
+
+    </div>
+
+    <div id="zadjustMainTab" class="main-tab-content">
+        
+<h1>HYPACK XYZ Z Value Adjuster</h1>
+<p class="description">
+        Adjust or invert the Z values in a HYPACK XYZ text file.
+        X and Y values remain unchanged except for output rounding.
+    </p>
+<div class="example">
+<strong>Input:</strong><br/>
+
+        979419.277 179385.831 -4.078
+
+        <br/><br/>
+<strong>Output:</strong><br/>
+
+        979419.28 179385.83 -4.1
+
+        <br/><br/>
+<strong>Rounding:</strong><br/>
+
+        X = 2 decimals<br/>
+        Y = 2 decimals<br/>
+        Z = 1 decimal
+
+    </div>
+<label for="fileInput">
+        Select HYPACK XYZ / TXT file
+    </label>
+<input accept=".txt,.xyz" id="fileInput" type="file"/>
+<label for="adjustment">
+        Z Adjustment
+    </label>
+<input id="adjustment" placeholder="Example: 1.5 or -2.2" step="0.01" type="number" value="0"/>
+<div class="invert-container">
+<label>
+<input id="invertZ" type="checkbox"/>
+
+            Invert Z Values
+
+        </label>
+</div>
+<div class="info">
+<strong>Operations:</strong><br/>
+
+        Enter <strong>1.5</strong> → adds 1.50 to every Z value<br/>
+
+        Enter <strong>-2.2</strong> → subtracts 2.20 from every Z value<br/>
+
+        Check <strong>Invert Z Values</strong> → changes positive Z to negative and negative Z to positive
+
+        <br/><br/>
+<strong>Output rounding:</strong><br/>
+
+        X → 2 decimal places<br/>
+
+        Y → 2 decimal places<br/>
+
+        Z → 1 decimal place
+
+    </div>
+<button id="processBtn">
+        Process XYZ File
+    </button>
+<button id="downloadBtn">
+        Download Corrected XYZ File
+    </button>
+<div id="status"></div>
+<div class="result" id="result"></div>
+
+    </div>
+</div>
+
+<script>
+function openMainTab(tabId, button) {
+    document.querySelectorAll('.main-tab-content').forEach(function(tab) {
+        tab.classList.remove('active');
+    });
+    document.querySelectorAll('.main-tab-button').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+    button.classList.add('active');
+}
+</script>
+
+<script>
+```html
+
+
+
+
+
+HYPACK MTX & CHN to XYZ Converter
+
+
+
+
+HYPACK MTX & CHN to XYZ Converter
+
+        Convert HYPACK MTX and CHN files directly in your browser.
+        No files are uploaded to a server.
+    
+
+
+
+            MTX → Four Corner XYZ
+        
+
+            CHN → XYZ Nodes Only
+        
+
+
+
+MTX → Four Corner XYZ
+
+
+            Select a HYPACK MTX file.
+
+            
+
+            The MTX values are interpreted as:
+
+            
+
+            X
+            Y
+            Width
+            First Leg / Length
+            X Grid Spacing
+            Y Grid Spacing
+            Bearing from North
+
+            
+
+            Bearing is measured
+            clockwise from North.
+
+            
+
+            The output contains only the four
+            outside corner coordinates.
+
+        
+
+            Select HYPACK MTX file
+        
+
+
+            Z value for four corners
+        
+
+
+Example MTX values:
+
+
+            1223885.40
+            186682.92
+            486.00
+            795.00
+            3.00
+            3.00
+            16.80
+
+            
+Result:
+
+
+            1223885.400 186682.920 0.0
+            1224115.180 187443.989 0.0
+            1224580.438 187303.520 0.0
+            1224350.657 186542.451 0.0
+
+        
+
+            Process MTX File
+        
+
+            Download Four Corner XYZ
+        
+
+            Clear
+        
+
+
+
+
+
+CHN → XYZ Nodes Only
+
+
+            Select a HYPACK CHN file.
+
+            
+
+            The converter extracts the channel nodes only.
+
+            
+
+            The output contains:
+
+            
+X Y Z
+
+
+            Node numbers, faces, segments, labels and other
+            CHN information are not included.
+
+        
+
+            Select HYPACK CHN file
+        
+
+
+CHN output example:
+
+
+            979390.720 179494.630 37.470
+            979395.120 179498.210 37.520
+            979401.330 179502.440 37.610
+
+            
+
+            Only X, Y and Z are written.
+
+        
+
+            Process CHN File
+        
+
+            Download Nodes XYZ
+        
+
+            Clear
+        
+
+
+
+
+
+
+
+```
+
+```html
+
+
+
+
+
+HYPACK XYZ VDATUM Z Adjuster
+
+
+
+
+
+        HYPACK XYZ VDATUM Z Adjuster
+    
+
+
+        Match every survey XYZ point to the
+        closest VDATUM XY point and calculate
+        the adjusted Z value.
+
+    
+
+
+
+            1. Select VDATUM XYZ File
+        
+
+
+            VDATUM MLLW XYZ File
+
+        
+
+
+
+            No VDATUM file selected
+
+        
+
+
+            Select the VDATUM XYZ file containing
+            X, Y and Z values.
+
+        
+
+
+
+
+            2. Select Survey / Second XYZ File
+        
+
+
+            XYZ Data File to Process
+
+        
+
+
+
+            No survey file selected
+
+        
+
+
+            X and Y from this file will be retained.
+            The Z value will be adjusted using the
+            closest VDATUM point.
+
+        
+
+
+
+
+            Calculation
+        
+
+
+            New Z = Survey Z + VDATUM Z
+
+        
+
+
+            For every point in the survey file,
+            the program finds the VDATUM point
+            with the closest X and Y location.
+
+        
+
+Example:
+
+
+            Survey Z = 8.30
+
+            
+
+            VDATUM Z = -0.71
+
+            
+
+            New Z =
+            8.30 + (-0.71) =
+            7.59
+
+
+
+
+
+
+            Process XYZ File
+
+        
+
+
+            Refresh / Clear All
+
+        
+
+
+
+
+
+
+
+            0%
+
+        
+
+
+
+
+        Select both files to begin.
+
+    
+
+
+
+
+            Output File Ready
+
+        
+
+
+
+
+            Download XYZ File
+
+        
+
+
+
+
+
+```
+
+
+
+
+
+
+HYPACK XYZ Z Value Adjuster
+
+
+
+
+HYPACK XYZ Z Value Adjuster
+
+        Adjust or invert the Z values in a HYPACK XYZ text file.
+        X and Y values remain unchanged except for output rounding.
+    
+
+Input:
+
+        979419.277 179385.831 -4.078
+
+        
+Output:
+
+        979419.28 179385.83 -4.1
+
+        
+Rounding:
+
+        X = 2 decimals
+        Y = 2 decimals
+        Z = 1 decimal
+
+    
+
+        Select HYPACK XYZ / TXT file
+    
+
+
+        Z Adjustment
+    
+
+
+
+
+
+            Invert Z Values
+
+        
+
+
+Operations:
+
+        Enter 1.5 → adds 1.50 to every Z value
+
+        Enter -2.2 → subtracts 2.20 from every Z value
+
+        Check Invert Z Values → changes positive Z to negative and negative Z to positive
+
+        
+Output rounding:
+
+        X → 2 decimal places
+
+        Y → 2 decimal places
+
+        Z → 1 decimal place
+
+    
+
+        Process XYZ File
+    
+
+        Download Corrected XYZ File
+    
+
+
+
+
+
+
+</script>
+</body>
+</html>
