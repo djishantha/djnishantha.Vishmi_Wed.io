@@ -1,15 +1,11 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>HYPACK XYZ Tools</title>
+<style>
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>HYPACK MTX & CHN to XYZ Converter</title>
-
-    <style>
 
         body {
             font-family: Arial, sans-serif;
@@ -175,1364 +171,1316 @@
             white-space: pre-wrap;
         }
 
-    </style>
+    
 
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            font-family:
+                Arial,
+                Helvetica,
+                sans-serif;
+
+            background: #f2f4f7;
+
+            margin: 0;
+
+            padding: 30px;
+
+            color: #222;
+        }
+
+
+        .container {
+
+            max-width: 850px;
+
+            margin: auto;
+
+            background: white;
+
+            padding: 30px;
+
+            border-radius: 12px;
+
+            box-shadow:
+                0 3px 15px
+                rgba(0,0,0,0.12);
+        }
+
+
+        h1 {
+
+            margin-top: 0;
+
+            color: #1f4e79;
+
+            text-align: center;
+        }
+
+
+        .description {
+
+            text-align: center;
+
+            color: #555;
+
+            margin-bottom: 30px;
+
+            line-height: 1.5;
+        }
+
+
+        .section {
+
+            border:
+                1px solid #d9d9d9;
+
+            border-radius: 8px;
+
+            padding: 20px;
+
+            margin-bottom: 20px;
+
+            background: #fafafa;
+        }
+
+
+        .section h2 {
+
+            margin-top: 0;
+
+            font-size: 19px;
+
+            color: #1f4e79;
+        }
+
+
+        label {
+
+            display: block;
+
+            font-weight: bold;
+
+            margin-bottom: 8px;
+        }
+
+
+        input[type="file"] {
+
+            width: 100%;
+
+            padding: 10px;
+
+            background: white;
+
+            border:
+                1px solid #bbb;
+
+            border-radius: 5px;
+
+            cursor: pointer;
+        }
+
+
+        .file-name {
+
+            margin-top: 8px;
+
+            color: #555;
+
+            font-size: 14px;
+
+            word-break: break-all;
+        }
+
+
+        button {
+
+            width: 100%;
+
+            padding: 14px;
+
+            border: none;
+
+            border-radius: 6px;
+
+            background: #1f6feb;
+
+            color: white;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+
+        button:hover {
+
+            background: #1557b0;
+        }
+
+
+        button:disabled {
+
+            background: #999;
+
+            cursor: not-allowed;
+        }
+
+
+        #downloadButton {
+
+            background: #198754;
+
+            margin-top: 5px;
+        }
+
+
+        #downloadButton:hover {
+
+            background: #146c43;
+        }
+
+
+        #refreshButton {
+
+            background: #6c757d;
+
+            margin-top: 12px;
+        }
+
+
+        #refreshButton:hover {
+
+            background: #5a6268;
+        }
+
+
+        #status {
+
+            margin-top: 20px;
+
+            padding: 15px;
+
+            background: #eef5ff;
+
+            border-left:
+                5px solid #1f6feb;
+
+            border-radius: 5px;
+
+            white-space: pre-line;
+
+            line-height: 1.5;
+        }
+
+
+        #progressContainer {
+
+            display: none;
+
+            margin-top: 15px;
+        }
+
+
+        progress {
+
+            width: 100%;
+
+            height: 22px;
+        }
+
+
+        #progressText {
+
+            text-align: center;
+
+            margin-top: 5px;
+
+            font-weight: bold;
+        }
+
+
+        .formula {
+
+            background: #fff;
+
+            border:
+                1px solid #ddd;
+
+            padding: 14px;
+
+            border-radius: 6px;
+
+            text-align: center;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 17px;
+
+            font-weight: bold;
+
+            margin-top: 10px;
+        }
+
+
+        .note {
+
+            font-size: 13px;
+
+            color: #666;
+
+            margin-top: 10px;
+
+            line-height: 1.5;
+        }
+
+
+        #downloadSection {
+
+            display: none;
+
+            margin-top: 25px;
+
+            padding: 20px;
+
+            border:
+                2px solid #198754;
+
+            border-radius: 8px;
+
+            background: #f1fff7;
+        }
+
+
+        #downloadSection h3 {
+
+            color: #198754;
+
+            margin-top: 0;
+        }
+
+
+        #outputFileName {
+
+            background: white;
+
+            border:
+                1px solid #ddd;
+
+            padding: 12px;
+
+            border-radius: 6px;
+
+            margin-bottom: 12px;
+
+            word-break: break-all;
+
+            font-family:
+                Consolas,
+                monospace;
+
+            font-size: 14px;
+        }
+
+
+        .info-box {
+
+            background: #fff8e1;
+
+            border-left:
+                5px solid #f0ad4e;
+
+            padding: 12px;
+
+            margin-top: 15px;
+
+            border-radius: 4px;
+
+            font-size: 13px;
+
+            line-height: 1.5;
+        }
+
+
+        .button-area {
+
+            margin-top: 20px;
+        }
+
+    
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 750px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+        }
+
+        h1 {
+            margin-top: 0;
+            color: #1f2937;
+        }
+
+        .description {
+            color: #555;
+            line-height: 1.5;
+        }
+
+        label {
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 7px;
+            font-weight: bold;
+        }
+
+        input[type="file"],
+        input[type="number"] {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
+
+        .invert-container {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+        }
+
+        .invert-container label {
+            display: flex;
+            align-items: center;
+            margin: 0;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .invert-container input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        button {
+            margin-top: 25px;
+            padding: 13px 22px;
+            font-size: 16px;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        #processBtn {
+            background: #2563eb;
+            color: white;
+        }
+
+        #downloadBtn {
+            background: #16a34a;
+            color: white;
+            display: none;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        .info {
+            margin-top: 20px;
+            padding: 15px;
+            background: #eef6ff;
+            border-left: 4px solid #2563eb;
+            line-height: 1.6;
+        }
+
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            background: #f5f5f5;
+            border-radius: 6px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            max-height: 220px;
+            overflow-y: auto;
+        }
+
+        .example {
+            background: #fafafa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-top: 20px;
+            font-family: monospace;
+            line-height: 1.6;
+        }
+    
+
+
+/* ===============================
+   FOUR-TAB COMBINED PAGE
+   =============================== */
+.main-container {
+    max-width: 950px;
+    margin: auto;
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.12);
+}
+
+.main-title {
+    margin-top: 0;
+    color: #1f4e79;
+    text-align: center;
+}
+
+.main-description {
+    text-align: center;
+    color: #555;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+
+.main-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 20px;
+    border-bottom: 2px solid #ddd;
+}
+
+.main-tab-button {
+    flex: 1;
+    padding: 14px 10px;
+    border: none;
+    background: #e5e7eb;
+    color: #333;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 6px 6px 0 0;
+    margin: 0;
+}
+
+.main-tab-button:hover { opacity: .9; }
+.main-tab-button.active { background: #2563eb; color: white; }
+
+.main-tab-content {
+    display: none;
+    padding-top: 25px;
+}
+.main-tab-content.active { display: block; }
+
+/* Prevent the original first-page nested tab bar from appearing. */
+#mtxTab, #chnTab {
+    padding-top: 0;
+}
+
+@media (max-width: 700px) {
+    .main-container { padding: 18px; }
+    .main-tabs { flex-wrap: wrap; }
+    .main-tab-button { flex: 1 1 48%; }
+}
+
+</style>
 </head>
-
-
 <body>
-
-
-<div class="container">
-
-    <h1>HYPACK MTX & CHN to XYZ Converter</h1>
-
-    <p class="description">
-        Convert HYPACK MTX and CHN files directly in your browser.
-        No files are uploaded to a server.
-    </p>
-
-
-    <!-- =====================================================
-         TABS
-    ====================================================== -->
-
-    <div class="tabs">
-
-        <button
-            class="tab-button active"
-            onclick="openTab('mtxTab', this)"
-        >
-            MTX → Four Corner XYZ
-        </button>
-
-        <button
-            class="tab-button"
-            onclick="openTab('chnTab', this)"
-        >
-            CHN → XYZ Nodes Only
-        </button>
-
+<div class="main-container">
+    <h1 class="main-title">HYPACK XYZ Tools</h1>
+    <div class="main-description">
+        HYPACK MTX / CHN extraction, VDATUM Z adjustment, and XYZ Z value adjustment tools.
+        All processing is performed locally in your browser.
     </div>
 
+    <div class="main-tabs">
+        <button class="main-tab-button active" onclick="openMainTab('mtxMainTab', this)">MTX → Four Corner XYZ</button>
+        <button class="main-tab-button" onclick="openMainTab('chnMainTab', this)">CHN → XYZ Nodes</button>
+        <button class="main-tab-button" onclick="openMainTab('vdatumMainTab', this)">VDATUM Z Adjuster</button>
+        <button class="main-tab-button" onclick="openMainTab('zadjustMainTab', this)">Z Adjust / Invert / Round</button>
+    </div>
 
-    <!-- =====================================================
-         MTX TAB
-    ====================================================== -->
-
-    <div
-        id="mtxTab"
-        class="tab-content active"
-    >
-
-        <h2>MTX → Four Corner XYZ</h2>
-
-        <p class="description">
+    <div id="mtxMainTab" class="main-tab-content active">
+        <div class="tab-content active" id="mtxTab">
+<h2>MTX → Four Corner XYZ</h2>
+<p class="description">
 
             Select a HYPACK MTX file.
 
-            <br><br>
+            <br/><br/>
 
             The MTX values are interpreted as:
 
-            <br><br>
+            <br/><br/>
 
-            X<br>
-            Y<br>
-            Width<br>
-            First Leg / Length<br>
-            X Grid Spacing<br>
-            Y Grid Spacing<br>
+            X<br/>
+            Y<br/>
+            Width<br/>
+            First Leg / Length<br/>
+            X Grid Spacing<br/>
+            Y Grid Spacing<br/>
             Bearing from North
 
-            <br><br>
+            <br/><br/>
 
             Bearing is measured
             <strong>clockwise from North</strong>.
 
-            <br><br>
+            <br/><br/>
 
             The output contains only the four
             outside corner coordinates.
 
         </p>
-
-
-        <label for="mtxFile">
+<label for="mtxFile">
             Select HYPACK MTX file
         </label>
-
-        <input
-            type="file"
-            id="mtxFile"
-            accept=".mtx,.txt"
-        >
-
-
-        <label for="mtxZ">
+<input accept=".mtx,.txt" id="mtxFile" type="file"/>
+<label for="mtxZ">
             Z value for four corners
         </label>
+<input id="mtxZ" step="0.1" type="number" value="0"/>
+<div class="info">
+<strong>Example MTX values:</strong>
+<br/><br/>
 
-        <input
-            type="number"
-            id="mtxZ"
-            value="0"
-            step="0.1"
-        >
-
-
-        <div class="info">
-
-            <strong>Example MTX values:</strong>
-
-            <br><br>
-
-            1223885.40<br>
-            186682.92<br>
-            486.00<br>
-            795.00<br>
-            3.00<br>
-            3.00<br>
+            1223885.40<br/>
+            186682.92<br/>
+            486.00<br/>
+            795.00<br/>
+            3.00<br/>
+            3.00<br/>
             16.80
 
-            <br><br>
+            <br/><br/>
+<strong>Result:</strong>
+<br/><br/>
 
-            <strong>Result:</strong>
-
-            <br><br>
-
-            1223885.400 186682.920 0.0<br>
-            1224115.180 187443.989 0.0<br>
-            1224580.438 187303.520 0.0<br>
+            1223885.400 186682.920 0.0<br/>
+            1224115.180 187443.989 0.0<br/>
+            1224580.438 187303.520 0.0<br/>
             1224350.657 186542.451 0.0
 
         </div>
-
-
-        <button
-            id="mtxProcessBtn"
-            class="processBtn"
-        >
+<button class="processBtn" id="mtxProcessBtn">
             Process MTX File
         </button>
-
-
-        <button
-            id="mtxDownloadBtn"
-            class="downloadBtn"
-        >
+<button class="downloadBtn" id="mtxDownloadBtn">
             Download Four Corner XYZ
         </button>
-
-
-        <button
-            id="mtxClearBtn"
-            class="clearBtn"
-        >
+<button class="clearBtn" id="mtxClearBtn">
             Clear
         </button>
-
-
-        <div id="mtxStatus"></div>
-
-        <div
-            id="mtxResult"
-            class="result"
-        ></div>
-
+<div id="mtxStatus"></div>
+<div class="result" id="mtxResult"></div>
+</div>
     </div>
 
-
-    <!-- =====================================================
-         CHN TAB
-    ====================================================== -->
-
-    <div
-        id="chnTab"
-        class="tab-content"
-    >
-
-        <h2>CHN → XYZ Nodes Only</h2>
-
-        <p class="description">
+    <div id="chnMainTab" class="main-tab-content">
+        <div class="tab-content" id="chnTab">
+<h2>CHN → XYZ Nodes Only</h2>
+<p class="description">
 
             Select a HYPACK CHN file.
 
-            <br><br>
+            <br/><br/>
 
             The converter extracts the channel nodes only.
 
-            <br><br>
+            <br/><br/>
 
             The output contains:
 
-            <br><br>
-
-            <strong>X Y Z</strong>
-
-            <br><br>
+            <br/><br/>
+<strong>X Y Z</strong>
+<br/><br/>
 
             Node numbers, faces, segments, labels and other
             CHN information are not included.
 
         </p>
-
-
-        <label for="chnFile">
+<label for="chnFile">
             Select HYPACK CHN file
         </label>
+<input accept=".chn,.txt" id="chnFile" type="file"/>
+<div class="info">
+<strong>CHN output example:</strong>
+<br/><br/>
 
-        <input
-            type="file"
-            id="chnFile"
-            accept=".chn,.txt"
-        >
-
-
-        <div class="info">
-
-            <strong>CHN output example:</strong>
-
-            <br><br>
-
-            979390.720 179494.630 37.470<br>
-            979395.120 179498.210 37.520<br>
+            979390.720 179494.630 37.470<br/>
+            979395.120 179498.210 37.520<br/>
             979401.330 179502.440 37.610
 
-            <br><br>
+            <br/><br/>
 
             Only X, Y and Z are written.
 
         </div>
-
-
-        <button
-            id="chnProcessBtn"
-            class="processBtn"
-        >
+<button class="processBtn" id="chnProcessBtn">
             Process CHN File
         </button>
-
-
-        <button
-            id="chnDownloadBtn"
-            class="downloadBtn"
-        >
+<button class="downloadBtn" id="chnDownloadBtn">
             Download Nodes XYZ
         </button>
-
-
-        <button
-            id="chnClearBtn"
-            class="clearBtn"
-        >
+<button class="clearBtn" id="chnClearBtn">
             Clear
         </button>
+<div id="chnStatus"></div>
+<div class="result" id="chnResult"></div>
+</div>
+    </div>
 
+    <div id="vdatumMainTab" class="main-tab-content">
+        
+<h1>
+        HYPACK XYZ VDATUM Z Adjuster
+    </h1>
+<div class="description">
 
-        <div id="chnStatus"></div>
+        Match every survey XYZ point to the
+        closest VDATUM XY point and calculate
+        the adjusted Z value.
 
-        <div
-            id="chnResult"
-            class="result"
-        ></div>
+    </div>
+ =========================================
+         VDATUM FILE
+         ========================================= 
+<div class="section">
+<h2>
+            1. Select VDATUM XYZ File
+        </h2>
+<label for="vdatumFile">
+
+            VDATUM MLLW XYZ File
+
+        </label>
+<input accept=".xyz,.txt" id="vdatumFile" type="file"/>
+<div class="file-name" id="vdatumName">
+
+            No VDATUM file selected
+
+        </div>
+<div class="note">
+
+            Select the VDATUM XYZ file containing
+            X, Y and Z values.
+
+        </div>
+</div>
+ =========================================
+         SURVEY FILE
+         ========================================= 
+<div class="section">
+<h2>
+            2. Select Survey / Second XYZ File
+        </h2>
+<label for="surveyFile">
+
+            XYZ Data File to Process
+
+        </label>
+<input accept=".xyz,.txt" id="surveyFile" type="file"/>
+<div class="file-name" id="surveyName">
+
+            No survey file selected
+
+        </div>
+<div class="note">
+
+            X and Y from this file will be retained.
+            The Z value will be adjusted using the
+            closest VDATUM point.
+
+        </div>
+</div>
+ =========================================
+         CALCULATION
+         ========================================= 
+<div class="section">
+<h2>
+            Calculation
+        </h2>
+<div class="formula">
+
+            New Z = Survey Z + VDATUM Z
+
+        </div>
+<div class="note">
+
+            For every point in the survey file,
+            the program finds the VDATUM point
+            with the closest X and Y location.
+
+        </div>
+<div class="info-box">
+<b>Example:</b>
+<br/><br/>
+
+            Survey Z = 8.30
+
+            <br/>
+
+            VDATUM Z = -0.71
+
+            <br/><br/>
+
+            New Z =
+            8.30 + (-0.71) =
+            <b>7.59</b>
+</div>
+</div>
+ =========================================
+         PROCESS BUTTON
+         ========================================= 
+<div class="button-area">
+<button id="processButton">
+
+            Process XYZ File
+
+        </button>
+<button id="refreshButton">
+
+            Refresh / Clear All
+
+        </button>
+</div>
+ =========================================
+         PROGRESS
+         ========================================= 
+<div id="progressContainer">
+<progress id="progressBar" max="100" value="0">
+</progress>
+<div id="progressText">
+
+            0%
+
+        </div>
+</div>
+ =========================================
+         STATUS
+         ========================================= 
+<div id="status">
+
+        Select both files to begin.
+
+    </div>
+ =========================================
+         DOWNLOAD SECTION
+         ========================================= 
+<div id="downloadSection">
+<h3>
+
+            Output File Ready
+
+        </h3>
+<div id="outputFileName">
+</div>
+<button id="downloadButton">
+
+            Download XYZ File
+
+        </button>
+</div>
 
     </div>
 
+    <div id="zadjustMainTab" class="main-tab-content">
+        
+<h1>HYPACK XYZ Z Value Adjuster</h1>
+<p class="description">
+        Adjust or invert the Z values in a HYPACK XYZ text file.
+        X and Y values remain unchanged except for output rounding.
+    </p>
+<div class="example">
+<strong>Input:</strong><br/>
 
+        979419.277 179385.831 -4.078
+
+        <br/><br/>
+<strong>Output:</strong><br/>
+
+        979419.28 179385.83 -4.1
+
+        <br/><br/>
+<strong>Rounding:</strong><br/>
+
+        X = 2 decimals<br/>
+        Y = 2 decimals<br/>
+        Z = 1 decimal
+
+    </div>
+<label for="fileInput">
+        Select HYPACK XYZ / TXT file
+    </label>
+<input accept=".txt,.xyz" id="fileInput" type="file"/>
+<label for="adjustment">
+        Z Adjustment
+    </label>
+<input id="adjustment" placeholder="Example: 1.5 or -2.2" step="0.01" type="number" value="0"/>
+<div class="invert-container">
+<label>
+<input id="invertZ" type="checkbox"/>
+
+            Invert Z Values
+
+        </label>
+</div>
+<div class="info">
+<strong>Operations:</strong><br/>
+
+        Enter <strong>1.5</strong> → adds 1.50 to every Z value<br/>
+
+        Enter <strong>-2.2</strong> → subtracts 2.20 from every Z value<br/>
+
+        Check <strong>Invert Z Values</strong> → changes positive Z to negative and negative Z to positive
+
+        <br/><br/>
+<strong>Output rounding:</strong><br/>
+
+        X → 2 decimal places<br/>
+
+        Y → 2 decimal places<br/>
+
+        Z → 1 decimal place
+
+    </div>
+<button id="processBtn">
+        Process XYZ File
+    </button>
+<button id="downloadBtn">
+        Download Corrected XYZ File
+    </button>
+<div id="status"></div>
+<div class="result" id="result"></div>
+
+    </div>
 </div>
 
+<script>
+function openMainTab(tabId, button) {
+    document.querySelectorAll('.main-tab-content').forEach(function(tab) {
+        tab.classList.remove('active');
+    });
+    document.querySelectorAll('.main-tab-button').forEach(function(btn) {
+        btn.classList.remove('active');
+    });
+    document.getElementById(tabId).classList.add('active');
+    button.classList.add('active');
+}
+</script>
 
 <script>
+```html
 
 
-/* ============================================================
-   TAB CONTROL
-============================================================ */
 
-function openTab(tabId, button) {
 
-    const tabs =
-        document.querySelectorAll(".tab-content");
 
-    tabs.forEach(function(tab) {
+HYPACK MTX & CHN to XYZ Converter
 
-        tab.classList.remove("active");
 
-    });
 
 
-    const buttons =
-        document.querySelectorAll(".tab-button");
+HYPACK MTX & CHN to XYZ Converter
 
-    buttons.forEach(function(btn) {
+        Convert HYPACK MTX and CHN files directly in your browser.
+        No files are uploaded to a server.
+    
 
-        btn.classList.remove("active");
 
-    });
 
+            MTX → Four Corner XYZ
+        
 
-    document
-        .getElementById(tabId)
-        .classList.add("active");
+            CHN → XYZ Nodes Only
+        
 
 
-    button.classList.add("active");
 
-}
+MTX → Four Corner XYZ
 
 
+            Select a HYPACK MTX file.
 
-/* ============================================================
-   GLOBAL VARIABLES
-============================================================ */
+            
 
-let mtxOutputText = "";
-let mtxOriginalFileName = "";
+            The MTX values are interpreted as:
 
-let chnOutputText = "";
-let chnOriginalFileName = "";
+            
 
+            X
+            Y
+            Width
+            First Leg / Length
+            X Grid Spacing
+            Y Grid Spacing
+            Bearing from North
 
+            
 
-/* ============================================================
-   MTX PROCESS
-============================================================ */
+            Bearing is measured
+            clockwise from North.
 
-document
-.getElementById("mtxProcessBtn")
-.addEventListener("click", function() {
+            
 
+            The output contains only the four
+            outside corner coordinates.
 
-    const fileInput =
-        document.getElementById("mtxFile");
+        
 
+            Select HYPACK MTX file
+        
 
-    const zInput =
-        document.getElementById("mtxZ");
 
+            Z value for four corners
+        
 
-    const status =
-        document.getElementById("mtxStatus");
 
+Example MTX values:
 
-    const result =
-        document.getElementById("mtxResult");
 
+            1223885.40
+            186682.92
+            486.00
+            795.00
+            3.00
+            3.00
+            16.80
 
-    const downloadBtn =
-        document.getElementById("mtxDownloadBtn");
+            
+Result:
 
 
-    if (!fileInput.files.length) {
+            1223885.400 186682.920 0.0
+            1224115.180 187443.989 0.0
+            1224580.438 187303.520 0.0
+            1224350.657 186542.451 0.0
 
-        alert("Please select an MTX file.");
+        
 
-        return;
+            Process MTX File
+        
 
-    }
+            Download Four Corner XYZ
+        
 
+            Clear
+        
 
-    const zValue =
-        Number(zInput.value);
 
 
-    if (!Number.isFinite(zValue)) {
 
-        alert("Please enter a valid Z value.");
 
-        return;
+CHN → XYZ Nodes Only
 
-    }
 
+            Select a HYPACK CHN file.
 
-    const file =
-        fileInput.files[0];
+            
 
+            The converter extracts the channel nodes only.
 
-    mtxOriginalFileName =
-        file.name;
+            
 
+            The output contains:
 
-    const reader =
-        new FileReader();
+            
+X Y Z
 
 
-    reader.onload =
-        function(event) {
+            Node numbers, faces, segments, labels and other
+            CHN information are not included.
 
+        
 
-            const text =
-                event.target.result;
+            Select HYPACK CHN file
+        
 
 
-            const values =
-                extractMTXValues(text);
+CHN output example:
 
 
-            if (values.length < 7) {
+            979390.720 179494.630 37.470
+            979395.120 179498.210 37.520
+            979401.330 179502.440 37.610
 
-                status.innerHTML =
-                    "<div class='error'>" +
+            
 
-                    "<strong>Error:</strong><br>" +
+            Only X, Y and Z are written.
 
-                    "Could not find the required " +
-                    "7 MTX values.<br>" +
+        
 
-                    "Values found: " +
-                    values.length +
+            Process CHN File
+        
 
-                    "</div>";
+            Download Nodes XYZ
+        
 
-                downloadBtn.style.display =
-                    "none";
+            Clear
+        
 
-                return;
 
-            }
 
 
-            /*
-             * MTX structure
-             *
-             * 0 = X
-             * 1 = Y
-             * 2 = Width
-             * 3 = First Leg / Length
-             * 4 = Grid X
-             * 5 = Grid Y
-             * 6 = Bearing
-             */
 
 
-            const x0 =
-                values[0];
 
-            const y0 =
-                values[1];
+```
 
-            const width =
-                values[2];
+```html
 
-            const length =
-                values[3];
 
-            const bearingDeg =
-                values[6];
 
 
-            /*
-             * Calculate four corners.
-             */
 
-            const corners =
-                calculateCorners(
-                    x0,
-                    y0,
-                    width,
-                    length,
-                    bearingDeg,
-                    zValue
-                );
+HYPACK XYZ VDATUM Z Adjuster
 
 
-            /*
-             * Create XYZ output.
-             */
 
-            mtxOutputText =
-                corners
-                .map(function(point) {
 
-                    return (
-                        point.x.toFixed(3) +
-                        " " +
-                        point.y.toFixed(3) +
-                        " " +
-                        point.z.toFixed(1)
-                    );
 
-                })
-                .join("\n");
+        HYPACK XYZ VDATUM Z Adjuster
+    
 
 
-            /*
-             * Status.
-             */
+        Match every survey XYZ point to the
+        closest VDATUM XY point and calculate
+        the adjusted Z value.
 
-            status.innerHTML =
-                "<div class='success'>" +
+    
 
-                "<strong>MTX processing complete.</strong>" +
 
-                "<br><br>" +
 
-                "X: " +
-                x0 +
+            1. Select VDATUM XYZ File
+        
 
-                "<br>" +
 
-                "Y: " +
-                y0 +
+            VDATUM MLLW XYZ File
 
-                "<br>" +
+        
 
-                "Width: " +
-                width +
 
-                "<br>" +
 
-                "First Leg: " +
-                length +
+            No VDATUM file selected
 
-                "<br>" +
+        
 
-                "Bearing from North: " +
-                bearingDeg +
-                "°" +
 
-                "<br>" +
+            Select the VDATUM XYZ file containing
+            X, Y and Z values.
 
-                "Z: " +
-                zValue +
+        
 
-                "</div>";
 
 
-            /*
-             * Preview.
-             */
 
-            result.textContent =
-                mtxOutputText;
+            2. Select Survey / Second XYZ File
+        
 
 
-            /*
-             * Show download.
-             */
+            XYZ Data File to Process
 
-            downloadBtn.style.display =
-                "inline-block";
+        
 
-        };
 
 
-    reader.readAsText(file);
+            No survey file selected
 
-});
+        
 
 
+            X and Y from this file will be retained.
+            The Z value will be adjusted using the
+            closest VDATUM point.
 
-/* ============================================================
-   EXTRACT MTX VALUES
-============================================================ */
+        
 
-function extractMTXValues(text) {
 
 
-    const lines =
-        text.split(/\r?\n/);
 
+            Calculation
+        
 
-    let values = [];
 
+            New Z = Survey Z + VDATUM Z
 
-    for (let line of lines) {
+        
 
 
-        line =
-            line.trim();
+            For every point in the survey file,
+            the program finds the VDATUM point
+            with the closest X and Y location.
 
+        
 
-        if (line === "") {
+Example:
 
-            continue;
 
-        }
+            Survey Z = 8.30
 
+            
 
-        /*
-         * Remove comments.
-         */
+            VDATUM Z = -0.71
 
-        line =
-            line.replace(
-                /#.*$/,
-                ""
-            );
+            
 
+            New Z =
+            8.30 + (-0.71) =
+            7.59
 
-        line =
-            line.replace(
-                /\/\/.*$/,
-                ""
-            );
 
 
-        if (line.trim() === "") {
 
-            continue;
 
-        }
 
+            Process XYZ File
 
-        /*
-         * Find numbers.
-         */
+        
 
-        const matches =
-            line.match(
-                /[-+]?(?:\d+(?:\.\d*)?|\.\d+)(?:[Ee][-+]?\d+)?/g
-            );
 
+            Refresh / Clear All
 
-        if (
-            matches &&
-            matches.length > 0
-        ) {
+        
 
-            const value =
-                Number(matches[0]);
 
 
-            if (
-                Number.isFinite(value)
-            ) {
 
-                values.push(value);
 
-            }
 
-        }
 
-    }
+            0%
 
+        
 
-    return values;
 
-}
 
 
+        Select both files to begin.
 
-/* ============================================================
-   CALCULATE FOUR CORNERS
-============================================================ */
+    
 
-function calculateCorners(
-    x0,
-    y0,
-    width,
-    length,
-    bearingDeg,
-    z
-) {
 
 
-    /*
-     * Bearing is clockwise from North.
-     *
-     * 0°   = North
-     * 90°  = East
-     * 180° = South
-     * 270° = West
-     */
 
+            Output File Ready
 
-    const bearing =
-        bearingDeg *
-        Math.PI /
-        180;
+        
 
 
-    /*
-     * First leg direction.
-     */
 
-    const ux =
-        Math.sin(bearing);
 
-    const uy =
-        Math.cos(bearing);
+            Download XYZ File
 
+        
 
-    /*
-     * Perpendicular direction.
-     *
-     * Clockwise numbering.
-     */
 
-    const vx =
-        Math.cos(bearing);
 
-    const vy =
-        -Math.sin(bearing);
 
 
-    /*
-     * Corner 1
-     */
+```
 
-    const p1 = {
 
-        x: x0,
-        y: y0,
-        z: z
 
-    };
 
 
-    /*
-     * Corner 2
-     */
 
-    const p2 = {
+HYPACK XYZ Z Value Adjuster
 
-        x:
-            x0 +
-            length * ux,
 
-        y:
-            y0 +
-            length * uy,
 
-        z: z
 
-    };
+HYPACK XYZ Z Value Adjuster
 
+        Adjust or invert the Z values in a HYPACK XYZ text file.
+        X and Y values remain unchanged except for output rounding.
+    
 
-    /*
-     * Corner 3
-     */
+Input:
 
-    const p3 = {
+        979419.277 179385.831 -4.078
 
-        x:
-            x0 +
-            length * ux +
-            width * vx,
+        
+Output:
 
-        y:
-            y0 +
-            length * uy +
-            width * vy,
+        979419.28 179385.83 -4.1
 
-        z: z
+        
+Rounding:
 
-    };
+        X = 2 decimals
+        Y = 2 decimals
+        Z = 1 decimal
 
+    
 
-    /*
-     * Corner 4
-     */
+        Select HYPACK XYZ / TXT file
+    
 
-    const p4 = {
 
-        x:
-            x0 +
-            width * vx,
+        Z Adjustment
+    
 
-        y:
-            y0 +
-            width * vy,
 
-        z: z
 
-    };
 
 
-    return [
-        p1,
-        p2,
-        p3,
-        p4
-    ];
+            Invert Z Values
 
-}
+        
 
 
+Operations:
 
-/* ============================================================
-   MTX DOWNLOAD
-============================================================ */
+        Enter 1.5 → adds 1.50 to every Z value
 
-document
-.getElementById("mtxDownloadBtn")
-.addEventListener("click", function() {
+        Enter -2.2 → subtracts 2.20 from every Z value
 
+        Check Invert Z Values → changes positive Z to negative and negative Z to positive
 
-    if (!mtxOutputText) {
+        
+Output rounding:
 
-        alert(
-            "Please process an MTX file first."
-        );
+        X → 2 decimal places
 
-        return;
+        Y → 2 decimal places
 
-    }
+        Z → 1 decimal place
 
+    
 
-    const blob =
-        new Blob(
-            [mtxOutputText],
-            {
-                type:
-                    "text/plain;charset=utf-8"
-            }
-        );
+        Process XYZ File
+    
 
+        Download Corrected XYZ File
+    
 
-    const url =
-        URL.createObjectURL(blob);
 
 
-    const link =
-        document.createElement("a");
 
-
-    link.href =
-        url;
-
-
-    const baseName =
-        mtxOriginalFileName
-        .replace(
-            /\.[^/.]+$/,
-            ""
-        );
-
-
-    link.download =
-        baseName +
-        "_four_corners.xyz";
-
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
-
-
-    URL.revokeObjectURL(url);
-
-});
-
-
-
-/* ============================================================
-   MTX CLEAR
-============================================================ */
-
-document
-.getElementById("mtxClearBtn")
-.addEventListener("click", function() {
-
-
-    document.getElementById(
-        "mtxFile"
-    ).value = "";
-
-
-    document.getElementById(
-        "mtxZ"
-    ).value = "0";
-
-
-    document.getElementById(
-        "mtxStatus"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "mtxResult"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "mtxDownloadBtn"
-    ).style.display = "none";
-
-
-    mtxOutputText = "";
-
-    mtxOriginalFileName = "";
-
-});
-
-
-
-/* ============================================================
-   CHN PROCESS
-============================================================ */
-
-document
-.getElementById("chnProcessBtn")
-.addEventListener("click", function() {
-
-
-    const fileInput =
-        document.getElementById("chnFile");
-
-
-    const status =
-        document.getElementById("chnStatus");
-
-
-    const result =
-        document.getElementById("chnResult");
-
-
-    const downloadBtn =
-        document.getElementById(
-            "chnDownloadBtn"
-        );
-
-
-    if (!fileInput.files.length) {
-
-        alert("Please select a CHN file.");
-
-        return;
-
-    }
-
-
-    const file =
-        fileInput.files[0];
-
-
-    chnOriginalFileName =
-        file.name;
-
-
-    const reader =
-        new FileReader();
-
-
-    reader.onload =
-        function(event) {
-
-
-            const text =
-                event.target.result;
-
-
-            const points =
-                extractCHNNodes(text);
-
-
-            if (
-                points.length === 0
-            ) {
-
-                status.innerHTML =
-                    "<div class='error'>" +
-
-                    "<strong>Error:</strong><br>" +
-
-                    "No CHN nodes were found." +
-
-                    "<br><br>" +
-
-                    "The CHN file structure may be different " +
-                    "from the expected HYPACK node format." +
-
-                    "</div>";
-
-
-                result.textContent = "";
-
-                downloadBtn.style.display =
-                    "none";
-
-                return;
-
-            }
-
-
-            /*
-             * Create XYZ output.
-             */
-
-            chnOutputText =
-                points
-                .map(function(point) {
-
-                    return (
-                        point.x.toFixed(3) +
-                        " " +
-                        point.y.toFixed(3) +
-                        " " +
-                        point.z.toFixed(3)
-                    );
-
-                })
-                .join("\n");
-
-
-            /*
-             * Status.
-             */
-
-            status.innerHTML =
-                "<div class='success'>" +
-
-                "<strong>CHN processing complete.</strong>" +
-
-                "<br><br>" +
-
-                "Nodes extracted: " +
-
-                points.length.toLocaleString() +
-
-                "</div>";
-
-
-            /*
-             * Preview first 20 nodes.
-             */
-
-            result.textContent =
-                points
-                .slice(0, 20)
-                .map(function(point) {
-
-                    return (
-                        point.x.toFixed(3) +
-                        " " +
-                        point.y.toFixed(3) +
-                        " " +
-                        point.z.toFixed(3)
-                    );
-
-                })
-                .join("\n");
-
-
-            if (
-                points.length > 20
-            ) {
-
-                result.textContent +=
-                    "\n\n... " +
-                    (
-                        points.length - 20
-                    ).toLocaleString() +
-                    " more points ...";
-
-            }
-
-
-            /*
-             * Show download.
-             */
-
-            downloadBtn.style.display =
-                "inline-block";
-
-        };
-
-
-    reader.readAsText(file);
-
-});
-
-
-
-/* ============================================================
-   EXTRACT CHN NODES
-============================================================ */
-
-function extractCHNNodes(text) {
-
-
-    const lines =
-        text.split(/\r?\n/);
-
-
-    let points = [];
-
-
-    /*
-     * Prevent duplicate points.
-     */
-
-    const seen =
-        new Set();
-
-
-    for (let line of lines) {
-
-
-        line =
-            line.trim();
-
-
-        if (line === "") {
-
-            continue;
-
-        }
-
-
-        /*
-         * Skip comments.
-         */
-
-        if (
-            line.startsWith("#") ||
-            line.startsWith("//")
-        ) {
-
-            continue;
-
-        }
-
-
-        /*
-         * Convert commas and tabs
-         * to spaces.
-         */
-
-        const parts =
-            line
-            .replace(/,/g, " ")
-            .trim()
-            .split(/\s+/);
-
-
-        /*
-         * Expected node record:
-         *
-         * NodeNumber X Y Z
-         */
-
-        if (
-            parts.length < 4
-        ) {
-
-            continue;
-
-        }
-
-
-        const node =
-            Number(parts[0]);
-
-        const x =
-            Number(parts[1]);
-
-        const y =
-            Number(parts[2]);
-
-        const z =
-            Number(parts[3]);
-
-
-        /*
-         * All four must be numeric.
-         */
-
-        if (
-            !Number.isFinite(node) ||
-            !Number.isFinite(x) ||
-            !Number.isFinite(y) ||
-            !Number.isFinite(z)
-        ) {
-
-            continue;
-
-        }
-
-
-        /*
-         * Node number should be integer.
-         */
-
-        if (
-            Math.abs(
-                node -
-                Math.round(node)
-            ) > 0.000001
-        ) {
-
-            continue;
-
-        }
-
-
-        /*
-         * State Plane coordinate check.
-         *
-         * This prevents headers and unrelated
-         * small numbers from being interpreted
-         * as nodes.
-         */
-
-        if (
-            Math.abs(x) < 100000 ||
-            Math.abs(y) < 10000
-        ) {
-
-            continue;
-
-        }
-
-
-        /*
-         * Duplicate check.
-         */
-
-        const key =
-            x.toFixed(6) +
-            "|" +
-            y.toFixed(6) +
-            "|" +
-            z.toFixed(6);
-
-
-        if (
-            seen.has(key)
-        ) {
-
-            continue;
-
-        }
-
-
-        seen.add(key);
-
-
-        /*
-         * Save only X Y Z.
-         */
-
-        points.push({
-
-            x: x,
-            y: y,
-            z: z
-
-        });
-
-    }
-
-
-    return points;
-
-}
-
-
-
-/* ============================================================
-   CHN DOWNLOAD
-============================================================ */
-
-document
-.getElementById("chnDownloadBtn")
-.addEventListener("click", function() {
-
-
-    if (!chnOutputText) {
-
-        alert(
-            "Please process a CHN file first."
-        );
-
-        return;
-
-    }
-
-
-    const blob =
-        new Blob(
-            [chnOutputText],
-            {
-                type:
-                    "text/plain;charset=utf-8"
-            }
-        );
-
-
-    const url =
-        URL.createObjectURL(blob);
-
-
-    const link =
-        document.createElement("a");
-
-
-    link.href =
-        url;
-
-
-    const baseName =
-        chnOriginalFileName
-        .replace(
-            /\.[^/.]+$/,
-            ""
-        );
-
-
-    link.download =
-        baseName +
-        "_nodes.xyz";
-
-
-    document.body.appendChild(link);
-
-    link.click();
-
-    document.body.removeChild(link);
-
-
-    URL.revokeObjectURL(url);
-
-});
-
-
-
-/* ============================================================
-   CHN CLEAR
-============================================================ */
-
-document
-.getElementById("chnClearBtn")
-.addEventListener("click", function() {
-
-
-    document.getElementById(
-        "chnFile"
-    ).value = "";
-
-
-    document.getElementById(
-        "chnStatus"
-    ).innerHTML = "";
-
-
-    document.getElementById(
-        "chnResult"
-    ).textContent = "";
-
-
-    document.getElementById(
-        "chnDownloadBtn"
-    ).style.display = "none";
-
-
-    chnOutputText = "";
-
-    chnOriginalFileName = "";
-
-});
 
 
 </script>
-
-
 </body>
-
 </html>
-```
